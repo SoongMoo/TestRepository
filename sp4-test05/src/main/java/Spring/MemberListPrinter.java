@@ -12,7 +12,6 @@ public class MemberListPrinter {
 	public void setPrinter(MemberPrinter printer) {
 		this.printer = printer;
 	}
-
 	public void printAll() {
 		Collection<MemberDTO> lists = memberDao.selectAll();
 		System.out.println("총사용자의 수 : " + lists.size());

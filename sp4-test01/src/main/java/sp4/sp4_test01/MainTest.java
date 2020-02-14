@@ -9,5 +9,4 @@ public class MainTest {
 		String msg = gt.greet("이숭무");
 		System.out.println(msg);
 	}
-
 }

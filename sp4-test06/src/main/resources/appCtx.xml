@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        ">
+        <context:annotation-config /><!-- 의존 객체 자동주입 -->
+        <bean id="memberDao" class="Spring.MemberDao" />
+        <bean id= "printer" class="Spring.MemberPrinter" />
+        <bean id= "printer1" class="Spring.MemberPrinter" >
+        	<qualifier value="sysout" />
+        </bean>
+        <bean id="memberRegisterService" 
+        		class="Spring.MemberRegisterService" />
+        <bean id="memberListPrinter" 
+        		class="Spring.MemberListPrinter" />
+
+        <bean id="changePasswordService" 
+        		class="Spring.ChangePasswordService" />
+        <bean id="memberInfoPrinter" 
+        		class="Spring.MemberInfoPrinter" />
+       	<bean id="versionPrinter" class="Spring.VersionPrinter">
+			<property name="majorVersion" value="4" />
+			<property name="minorVersion">
+				<value>1</value>
+		</property>
+	</bean>
+</beans>

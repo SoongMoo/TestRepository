@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+		<bean id="memberRegisterService" 
+        		class="Spring.MemberRegisterService" >
+        	<constructor-arg name="memberDao" ref="memberDao"/>	
+        </bean>
+        <bean id="memberListPrinter" 
+        		class="Spring.MemberListPrinter" >
+        	<property name="memberDao" ref="memberDao"/>
+        	<property name="printer" ref="printer"/>
+        </bean>
+        <bean id="changePasswordService" 
+        		class="Spring.ChangePasswordService" >
+        	<property name="memberDao" ref="memberDao"/>
+        </bean>
+        <bean id="memberInfoPrinter" 
+        		class="Spring.MemberInfoPrinter" >
+        	<constructor-arg name="memberDao" ref="memberDao"/>	
+        	<constructor-arg name="printer" ref="printer"/>
+        </bean>
+        <bean id="versionPrinter" class="Spring.VersionPrinter">
+        	<property name="majorVersion" value="4"/>
+        	<property name="minorVersion">
+        		<value>1</value>	
+        	</property>
+        </bean>
+</beans>

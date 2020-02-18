@@ -30,7 +30,7 @@
 	<tr><td colspan=3>
 		<a href="#">아이디 찾기</a>|<a href="#">비밀번호 찾기</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="memberRegist">회원가입</a>
+		<a href="register/agree">회원가입</a>
 	</td></tr>
 </table>
 <!-- 로그인 되었을 때 -->

@@ -16,6 +16,7 @@
   		<param-value>
   			classpath:spring-context.xml
 			classpath:spring-beans.xml
+			classpath:spring-jdbc.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

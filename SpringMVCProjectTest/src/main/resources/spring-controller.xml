@@ -11,4 +11,5 @@
 	<bean class="Controller.Member.LoginController" />
 	<bean class="Controller.Member.MemberController" />
 	<bean class="Controller.Member.MemberInfoController" />
+	<bean class="Controller.Board.BoardController" />
 </beans>

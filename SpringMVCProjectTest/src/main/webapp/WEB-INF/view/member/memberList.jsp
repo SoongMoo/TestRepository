@@ -24,7 +24,7 @@
 <c:forEach items="${memberList }" var="member" >
 <tr align="center" valign="middle">
 	<td align="center">
-		<a href ="memberInfo.nhn?id=${member.userId }">${member.userId }</a>
+		<a href ="<c:url value='/member/memberInfo/${member.userId }' />">${member.userId }</a>
 	</td>
 	<td align="center">${member.userName }</td>
 	<td align="center">${member.userPh1 }</td>
@@ -34,8 +34,7 @@
 	</td>
 </tr>
 </c:forEach>
-
 </table>
-<a href="../register/agree" >회원등록</a>
+<a href="<c:url value='/register/agree' />" >회원등록</a>
 </body>
 </html>

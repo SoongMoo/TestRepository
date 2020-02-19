@@ -60,7 +60,7 @@ public class MemberDAO {
 	public Integer insertMember(MemberDTO memberDTO) {
 		Integer i = 0;
 		String sql = "insert into member( "+ columns +" ) "
-				+ " values(?,?,?,?,?,?,?,?,?)";
+				+ " values(?,?,?,?,?,?,?,?,?,sysdate)";
 		i = jdbcTemplate.update(sql,
 				memberDTO.getUserId(),memberDTO.getUserPw(),
 				memberDTO.getUserName(), memberDTO.getUserBirth(),

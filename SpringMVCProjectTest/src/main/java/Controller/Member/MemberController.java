@@ -44,6 +44,7 @@ public class MemberController {
 			i = memberJoinService.execute(memberCommand);
 			return "member/memberWelcome";
 		}catch(Exception e) {
+			e.printStackTrace();
 			errors.rejectValue("userId", "duplicate");
 			return "member/memberForm";
 		}

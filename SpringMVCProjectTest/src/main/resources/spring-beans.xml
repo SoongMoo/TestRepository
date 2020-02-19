@@ -5,10 +5,20 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd
 	    "
 >
+	<bean class="Controller.Member.MemberListController" />
+	<bean class="Controller.Member.LogoutController" />
+	<bean class="Controller.Member.MainController" />
+	<bean class="Controller.Member.LoginController" />
 	<bean class="Controller.Member.MemberController" />
 	<bean id = "memberJoinService"  
 		class = "Service.Member.MemberJoinService"/>
 	<bean id="memberDAO" 
 		class = "Model.DAO.MemberDAO" />
-	
+	<bean id= "authService" 
+		class="Service.Member.AuthService" />
+	<bean id="memberListService" 
+		class="Service.Member.MemberListService" />
 </beans>
+
+
+

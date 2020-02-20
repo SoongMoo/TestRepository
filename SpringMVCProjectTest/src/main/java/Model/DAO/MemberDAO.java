@@ -44,7 +44,16 @@ public class MemberDAO {
 	public MemberDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+	public Integer pwUpdate(String userId, String pw, String newPw) {
+		String sql = "update member "
+				+ "   set user_pw = ?"
+				+ "   where USER_ID = ? and USER_PW = ?  ";
+		System.out.println();
+		System.out.println("pwUpdate : " + pw);
+		System.out.println("pwUpdate : " + newPw);
+		System.out.println("pwUpdate : " + userId);
+		return jdbcTemplate.update(sql,newPw,userId,pw);
+	}
 	public Integer memberModify(MemberDTO member) {
 		String sql = " update member "
 				+ "   set USER_EMAIL = ?, USER_ADDR = ?, "

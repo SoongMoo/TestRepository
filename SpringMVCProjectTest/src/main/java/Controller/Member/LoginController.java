@@ -1,5 +1,6 @@
 package Controller.Member;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,9 @@ public class LoginController {
 	}
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(LoginCommand loginCommand,Errors errors,
-			HttpSession session) {
+			HttpSession session, HttpServletResponse response) {
 		new LoginCommandValidator().validate(loginCommand, errors);
-		authService.authenticate(loginCommand, session, errors);
+		authService.authenticate(loginCommand, session, errors, response);
 		if (errors.hasErrors()) {
 			return "main";
 		}

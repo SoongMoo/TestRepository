@@ -1,10 +1,13 @@
 package Command.Member;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class MemberCommand {
 	String userId;
 	String userPw;
 	String userPwCon;
 	String userName;
+	@DateTimeFormat(pattern="yyyyMMdd")
 	String userBirth;
 	String userGender;
 	String userEmail;

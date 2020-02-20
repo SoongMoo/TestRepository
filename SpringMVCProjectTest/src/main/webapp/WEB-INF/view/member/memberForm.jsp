@@ -48,7 +48,7 @@
  		<td  width = "400">
  			<form:input  path="userBirth" 
  			 id = "userBirth" size = "12" maxlength="10" />
- 			<form:errors path="userBirth"/>
+ 			<form:errors path="userBirth" />
  		</td>
  	</tr>
  	<tr>

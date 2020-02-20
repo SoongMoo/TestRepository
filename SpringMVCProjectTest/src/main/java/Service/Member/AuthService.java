@@ -1,5 +1,7 @@
 package Service.Member;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,17 @@ public class AuthService {
 	
 	private AuthInfo authInfo;
 	public void authenticate(LoginCommand loginCommand,
-			HttpSession session, Errors errors) {
+			HttpSession session, Errors errors, 
+			HttpServletResponse response) {
+		Cookie rememberCookie = 
+				new Cookie("REMEMBER",loginCommand.getId1());
+		if(loginCommand.getIdStore()) {
+			rememberCookie.setMaxAge(60 * 60 * 24 * 30);
+		}else {
+			rememberCookie.setMaxAge(0);
+		}
+		response.addCookie(rememberCookie);
+		
 		MemberDTO member = new MemberDTO();
 		member.setUserId(loginCommand.getId1());
 		member.setUserPw(
@@ -31,6 +43,10 @@ public class AuthService {
 					member.getUserPw());
 			if(authInfo.getPw().equals(
 					Encrypt.getEncryption(loginCommand.getPw()))){
+				Cookie autoLoginCookie = 
+						new Cookie("AutoLogin",loginCommand.getId1());
+				autoLoginCookie.setMaxAge(60 * 60 * 24 * 30);
+				response.addCookie(autoLoginCookie);
 				session.setAttribute("authInfo",authInfo);
 			}else {
 				System.out.println("비밀번호가 틀립니다.");

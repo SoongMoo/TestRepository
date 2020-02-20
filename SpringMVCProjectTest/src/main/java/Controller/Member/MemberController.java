@@ -34,7 +34,7 @@ public class MemberController {
 	@RequestMapping(value = "/register/memberJoinAction",
 			method = RequestMethod.POST)
 	public String  memberJoin(MemberCommand memberCommand,
-			Errors errors) {
+			Errors errors, Model model) {
 		new MemberCommandValidator().validate(memberCommand, errors);
 		if(errors.hasErrors()) {
 			return "member/memberForm";

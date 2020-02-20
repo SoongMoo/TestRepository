@@ -5,6 +5,8 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd
 	    "
 >
+	<bean class="Controller.Member.MemberPasswordController" />
+	<bean class="Controller.Member.MemberModifyController"/>
 	<bean class="Controller.Member.MemberListController" />
 	<bean class="Controller.Member.LogoutController" />
 	<bean class="Controller.Member.MainController" />

@@ -1,5 +1,7 @@
 package Model.DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -8,6 +10,8 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 
 import Model.DTO.MemberDTO;
@@ -39,6 +43,18 @@ public class MemberDAO {
 	@Autowired
 	public MemberDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public Integer memberModify(MemberDTO member) {
+		String sql = " update member "
+				+ "   set USER_EMAIL = ?, USER_ADDR = ?, "
+				+ "       USER_PH1 = ? , USER_PH2 = ?"
+				+ "   where USER_ID = ? and USER_PW = ?  ";
+		Integer i = jdbcTemplate.update(sql, 
+				member.getUserEmail(), member.getUserAddr(),
+				member.getUserPh1(),member.getUserPh2(),
+				member.getUserId(),member.getUserPw());
+		return i ;
 	}
 	public List<MemberDTO> selectList(){
 		String sql = "select " + columns + " from member ";

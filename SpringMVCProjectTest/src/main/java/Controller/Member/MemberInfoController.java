@@ -12,7 +12,7 @@ import Service.Member.MemberDetailService;
 public class MemberInfoController {
 	@Autowired
 	private MemberDetailService memberDetailService;
-	@RequestMapping("/member/memberInfo/{ccc}")
+	@RequestMapping("/edit/memberInfo/{ccc}")
 	public String memberInfo(@PathVariable("ccc") String userId ,
 			Model model) {
 		try {

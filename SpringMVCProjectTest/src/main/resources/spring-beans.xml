@@ -5,6 +5,8 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd
 	    "
 >
+	<bean id = "pwModifyService"  
+		class = "Service.Member.PwModifyService"/>
 	<bean id = "memberJoinService"  
 		class = "Service.Member.MemberJoinService"/>
 	<bean id="memberDAO" 
@@ -15,6 +17,8 @@
 		class="Service.Member.MemberListService" />
 	<bean id="memberDetailService" 
 		class="Service.Member.MemberDetailService" />
+	<bean id ="memberModifyService" 
+		class="Service.Member.MemberModifyService" />
 </beans>
 
 

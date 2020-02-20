@@ -24,7 +24,7 @@
 <c:forEach items="${memberList }" var="member" >
 <tr align="center" valign="middle">
 	<td align="center">
-		<a href ="<c:url value='/member/memberInfo/${member.userId }' />">${member.userId }</a>
+		<a href ="<c:url value='/edit/memberInfo/${member.userId }' />">${member.userId }</a>
 	</td>
 	<td align="center">${member.userName }</td>
 	<td align="center">${member.userPh1 }</td>

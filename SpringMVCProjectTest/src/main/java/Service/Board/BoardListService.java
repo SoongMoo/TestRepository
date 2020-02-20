@@ -15,5 +15,11 @@ public class BoardListService {
 
 	public void boardList(Model model) {
 		List<BoardDTO> board = boardDAO.allSelect();
+		if(board!=null) {
+			model.addAttribute("boards",board);
+			model.addAttribute("count", boardDAO.count());
+		}
+	
 	}
+	
 }

@@ -6,8 +6,10 @@
 	    "
 >
 	<bean id="boardWriteService"  class="Service.Board.BoardWriteService" />
+	<bean id ="boardListService" class="Service.Board.BoardListService" />
+	<bean id ="boardDetailService" class="Service.Board.BoardDetailService" />
 	<bean id="boardDAO" class="Model.DAO.BoardDAO" />
-
+	
 
 
 

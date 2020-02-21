@@ -1,19 +1,19 @@
-package Command.Member;
+package Model.DTO;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Timestamp;
 
-public class MemberCommand {
-	String userId;
-	String userPw;
-	String userPwCon;
+public class MemberDTO {
+	String userId ;
+	String userPw  ; 
 	String userName;
-	@DateTimeFormat(pattern="yyyyMMddHH")
-	String userBirth;
+	Timestamp userBirth;
 	String userGender;
 	String userEmail;
 	String userAddr;
 	String userPh1;
 	String userPh2;
+	Timestamp userRegist;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -26,22 +26,16 @@ public class MemberCommand {
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
-	public String getUserPwCon() {
-		return userPwCon;
-	}
-	public void setUserPwCon(String userPwCon) {
-		this.userPwCon = userPwCon;
-	}
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserBirth() {
+	public Timestamp getUserBirth() {
 		return userBirth;
 	}
-	public void setUserBirth(String userBirth) {
+	public void setUserBirth(Timestamp userBirth) {
 		this.userBirth = userBirth;
 	}
 	public String getUserGender() {
@@ -73,11 +67,11 @@ public class MemberCommand {
 	}
 	public void setUserPh2(String userPh2) {
 		this.userPh2 = userPh2;
-	}	
-	public boolean isUserPwEqualToUserPwCon() {
-		if(userPw.equals(userPwCon)) {
-			return true;
-		}
-		return false;
+	}
+	public Timestamp getUserRegist() {
+		return userRegist;
+	}
+	public void setUserRegist(Timestamp userRegist) {
+		this.userRegist = userRegist;
 	}
 }

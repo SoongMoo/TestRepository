@@ -39,6 +39,7 @@ public class MemberController {
 		if(errors.hasErrors()) {
 			return "member/memberForm";
 		}
+		
 		Integer i = 0;
 		try {
 			i = memberJoinService.execute(memberCommand);

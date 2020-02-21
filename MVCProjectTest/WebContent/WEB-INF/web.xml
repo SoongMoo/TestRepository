@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>MVCProjectTest</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  	<servlet-name>member</servlet-name>
+  	<servlet-class>Controller.Member.MemberController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>member</servlet-name>
+  	<url-pattern>*.nhn</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>board</servlet-name>
+  	<servlet-class>Controller.Board.BoardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>board</servlet-name>
+  	<url-pattern>*.bd</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>LibraryBoard</servlet-name>
+  	<servlet-class>Controller.LibraryBoard.LibraryBoardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LibraryBoard</servlet-name>
+  	<url-pattern>*.lb</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>AnswerBoard</servlet-name>
+  	<servlet-class>Controller.AnswerBoard.AnswerBoardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AnswerBoard</servlet-name>
+  	<url-pattern>*.ab</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+  	<servlet-name>Goods</servlet-name>
+  	<servlet-class>Controller.Goods.GoodsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Goods</servlet-name>
+  	<url-pattern>*.gd</url-pattern>
+  </servlet-mapping>
+</web-app>

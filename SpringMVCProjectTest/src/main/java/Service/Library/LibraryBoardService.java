@@ -41,7 +41,8 @@ public class LibraryBoardService {
 		String fileSizeTotal ="";
 		String location ="";
 		String filePath = request.getServletContext().getRealPath(PATH);
-		System.out.println(filePath);
+		System.out.println();
+		System.out.println("LibraryBoardService : " + filePath);
 		for(MultipartFile mf : libraryBoardCommand.getReport()) {
 			String original = mf.getOriginalFilename();
 			String originalFileExtension = 
@@ -52,7 +53,7 @@ public class LibraryBoardService {
 			originalTotal += original + "-";
 			storeTotal += store + "-";
 			fileSizeTotal += fileSize + "-";
-			File file = new File(filePath + store);
+			File file = new File(filePath + "\\" + store);
 			try {
 				mf.transferTo(file);
 			} catch (Exception e) {

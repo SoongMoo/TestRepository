@@ -1,11 +1,21 @@
 package Command.Library;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class LibraryBoardCommand {	
 	private Integer boardNum;
 	private String boardName;
 	private String boardPass;
 	private String boardSubject;
 	private String boardContent;
+	private MultipartFile [] report; 
+	
+	public MultipartFile[] getReport() {
+		return report;
+	}
+	public void setReport(MultipartFile[] report) {
+		this.report = report;
+	}
 	
 	public Integer getBoardNum() {
 		return boardNum;

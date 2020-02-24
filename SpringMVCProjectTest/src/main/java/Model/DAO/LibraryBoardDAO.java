@@ -30,7 +30,7 @@ public class LibraryBoardDAO {
 			dto.setBoardNum(rs.getInt("BOARD_NUM"));
 			dto.setBoardPass(rs.getString("BOARD_PASS"));
 			dto.setBoardSubject(rs.getString("BOARD_SUBJECT"));
-			dto.setFileSize(rs.getLong("FILE_SIZE"));
+			dto.setFileSize(rs.getString("FILE_SIZE"));
 			dto.setIpAddr(rs.getString("IP_ADDR"));
 			dto.setOriginalfileName(rs.getString("ORIGINAL_FILE_NAME"));
 			dto.setReadCount(rs.getInt("READ_COUNT"));
@@ -87,9 +87,11 @@ public class LibraryBoardDAO {
 	public void libraryInsert(LibraryBoardDTO dto) {
 		sql = "insert into libraryboard (" + COLUMNS + ") "
 			+ " values (num_seq.nextval, ?, ?,?,?,?,sysdate,?,0,"
-			+ "null,null,null)";
+			+ "?,?,?)";
 		jdbcTemplate.update(sql, dto.getUserId(),dto.getBoardName(),
 				dto.getBoardPass(),dto.getBoardSubject(),
-				dto.getBoardContent(),dto.getIpAddr());
+				dto.getBoardContent(),dto.getIpAddr(),
+				dto.getOriginalfileName(),dto.getStoreFileName(),
+				dto.getFileSize());
 	}
 }

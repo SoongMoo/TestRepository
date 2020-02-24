@@ -34,8 +34,9 @@ public class LibraryBoardController {
 			LibraryBoardCommand libraryBoardCommand, 
 			HttpSession session,
 			HttpServletRequest request){
-		libraryBoardService.writePro(libraryBoardCommand, session, request);
-		return "redirect:/libraryBoard/library";
+		return 
+	libraryBoardService.writePro(libraryBoardCommand, session, request);
+		 
 	}
 	
 	

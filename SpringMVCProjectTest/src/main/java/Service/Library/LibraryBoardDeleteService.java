@@ -21,6 +21,7 @@ public class LibraryBoardDeleteService {
 			path = "redirect:/libraryBoard/library";
 		}else {
 			model.addAttribute("passError", "비밀번호가 틀렸습니다.");
+			model.addAttribute("num" , boardNum);
 			path = "LibraryBoard/board_delete";
 		}
 		return path;

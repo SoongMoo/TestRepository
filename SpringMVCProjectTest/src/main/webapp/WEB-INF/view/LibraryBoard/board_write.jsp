@@ -13,7 +13,7 @@
 </head>
 <body>
 <form action="boardWritePro" method="post"  
-	name="boardform" >
+	name="boardform" enctype="multipart/form-data">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
@@ -53,7 +53,15 @@
 			<textarea name="boardContent" cols="67" rows="15"></textarea>
 		</td>
 	</tr>
-
+	<tr>
+			<td style="font-family:돋음; font-size:12">
+				<div align="center">파일</div>
+			</td>
+			<td>
+				<input type="file" name="report" multiple = "multiple" />
+				<div >${fileError }</div>
+			</td>	
+	</tr>
 	<tr bgcolor="cccccc">
 		<td colspan="2" style="height:1px;">
 		</td>

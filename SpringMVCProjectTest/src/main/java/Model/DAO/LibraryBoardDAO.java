@@ -43,12 +43,29 @@ public class LibraryBoardDAO {
 	public LibraryBoardDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	public void boardReadcountUpdate(Long boardNum) {
+		sql = "update libraryboard "
+			+ " set READ_COUNT = READ_COUNT + 1 "
+			+ " where BOARD_NUM = ?";
+		jdbcTemplate.update(sql,boardNum);
+	}
+	public LibraryBoardDTO boardDetail(Long boardNum, String tablename) {
+		sql = " select " + COLUMNS + "from  " + tablename
+			+ " where BOARD_NUM = ?";
+		List<LibraryBoardDTO> list =
+				jdbcTemplate.query(sql, libraryBoardMapper , boardNum );
+		return list.isEmpty() ? null : list.get(0);
+	}
+	public Integer count() {
+		sql = "select count(*) from libraryboard ";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
 	public List<LibraryBoardDTO> BoardList(int page, int limit){
 		sql = " select  * "
 			+ "from (select rownum rn , " + COLUMNS 
 			+ " from ( select " + COLUMNS + " from libraryboard "
 					+ " order by BOARD_NUM desc)) "
-			+ " rn >= ? and rn <= ? ";
+			+ " where rn >= ? and rn <= ? ";
 		int startrow = (page -1) * limit + 1;
 		int endrow	= 	startrow + limit -1;
 		return jdbcTemplate.query(sql, libraryBoardMapper, 

@@ -48,7 +48,7 @@
 		</td>
 		<td style="font-family:돋음; font-size:12">
 		
-		<a href="LibraryBoard/update/${board.storeFileName}">
+		<a href="update/${board.storeFileName}">
 			${board.originalfileName } 
 		</a> / ${board.fileSize }
 		</td>
@@ -61,13 +61,13 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			<a href="libraryBoard/boardModify?num=${board.boardNum }">
+			<a href="boardModify?num=${board.boardNum }">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a href="libraryBoard/boardDelete?num=${board.boardNum }">
+			<a href="boardDelete?num=${board.boardNum }">
 			[삭제]
 			</a>&nbsp;&nbsp;
-			<a href="libraryBoard/library">[목록]</a>&nbsp;&nbsp;
+			<a href="library">[목록]</a>&nbsp;&nbsp;
 			</font>
 		</td>
 	</tr>

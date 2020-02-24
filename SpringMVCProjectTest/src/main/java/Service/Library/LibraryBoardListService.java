@@ -21,6 +21,18 @@ public class LibraryBoardListService {
 		int limitPage = 10 ;
 		List<LibraryBoardDTO> lists = 
 				libraryBoardDAO.BoardList(nowPage,limit);
-		model.addAttribute("boards", lists);
+		// 전체페이지 갯수를 구하기 위해 총 리스트의 수를 가져온다.
+		int totalCount = libraryBoardDAO.count();
+		int maxPage = (int)((double)totalCount/limit + 0.95);
+		int startPage =
+				(int)(((double)nowPage/limitPage + 0.9)-1) * 10 + 1;
+		int endPage  = startPage + limitPage -1;
+		if(endPage > maxPage) endPage = maxPage;
+		model.addAttribute("boards",lists );
+		model.addAttribute("count", totalCount);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", nowPage);
 	}
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,8 @@
 	</script>
 </head>
 <body>
-<form action="libraryBoard/boardModifyAction" method="post" name="modifyform">
+<form:form action="boardModifyPro" method="post" name="modifyform"
+   commandName="board">
 <input type="hidden" name="boardNum" value="${board.boardNum }">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
@@ -23,8 +26,8 @@
 			<div align="center">제 목</div>
 		</td>
 		<td>
-			<input name="boardSubject" size="50" maxlength="100" 
-				value="${board.boardSubject }">
+			<form:input path="boardSubject" size="50" maxlength="100" />
+			<form:errors path="boardSubject" />
 		</td>
 	</tr>
 	<tr>
@@ -32,7 +35,8 @@
 			<div align="center">내 용</div>
 		</td>
 		<td>
-			<textarea name="boardContent" cols="67" rows="15">${board.boardContent }</textarea>
+			<form:textarea path="boardContent" cols="67" rows="15" />
+			<form:errors path="boardContent" />
 		</td>
 	</tr>
 	<tr>
@@ -48,7 +52,8 @@
 			<div align="center">비밀번호</div>
 		</td>
 		<td>
-			<input name="boardPass" type="password">
+			<form:password path="boardPass" />
+			<form:errors path="boardPass" />
 		</td>
 	</tr>
 	
@@ -67,6 +72,6 @@
 		</td>
 	</tr>
 </table>
-</form>
+</form:form>
 </body>
 </html>

@@ -6,5 +6,5 @@
 	    "
 >
 	<bean class="Controller.Library.LibraryBoardController" />
-
+	<bean class="Controller.Library.LibraryBoardDetailController" />
 </beans>

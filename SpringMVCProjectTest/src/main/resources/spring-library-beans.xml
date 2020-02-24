@@ -6,10 +6,11 @@
 	    "
 >
 	<bean id="libraryBoardService" 
-		class = "Service.Library.LibraryBoardService"/>
+		class = "Service.Library.LibraryBoardService" />
 	<bean id="libraryBoardListService" 
-		class = "Service.Library.LibraryBoardListService"/>
-	
+		class = "Service.Library.LibraryBoardListService" />
+	<bean id="libraryBoardDetailService" 
+		class = "Service.Library.LibraryBoardDetailService" />
 	<bean id="libraryBoardDAO"
 		class= "Model.DAO.LibraryBoardDAO" />
 </beans>

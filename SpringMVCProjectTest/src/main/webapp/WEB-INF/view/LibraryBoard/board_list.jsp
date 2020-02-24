@@ -42,7 +42,7 @@
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
-			<a href="libraryBoard/boardDetailAction?num=${board.boardNum }">
+			<a href="boardDetail?num=${board.boardNum }">
 			${board.boardSubject }</a>
 			</div>
 		</td>
@@ -60,14 +60,16 @@
 	<tr align=center height=20>
 		<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
 
-			[이전]&nbsp;
-
-			<a href="">[이전]</a>&nbsp;
-				[1][2][3][4][5][6][7][8][9][10]
-
-				<a href="#"></a>&nbsp;
-			[다음]
+			<c:if test="${ page > 1}">
+			<a href="library?page=${ page -1 }">[이전]</a>&nbsp;
+			</c:if>
+				<c:forEach var="i" begin="${startPage}" end="${endPage }" 
+							step="1">
+				<a href="library?page=${i }">${i }</a>&nbsp;
+				</c:forEach>
+			<c:if test="${page < maxPage }">
 			<a href="libraryBoard/boardList?page=">[다음]</a>
+			</c:if>
 
 		</td>
 	</tr>

@@ -37,6 +37,9 @@ public class LibraryBoardController {
 		libraryBoardService.writePro(libraryBoardCommand, session, request);
 		return "redirect:/libraryBoard/library";
 	}
+	
+	
+	
 }
 
 

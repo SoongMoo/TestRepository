@@ -17,5 +17,4 @@ public class LibraryBoardModifyValidator implements Validator{
 		ValidationUtils.rejectIfEmpty(errors, "boardSubject", "required");
 		ValidationUtils.rejectIfEmpty(errors, "boardPass", "required");
 	}
-
 }

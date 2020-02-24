@@ -15,8 +15,8 @@
 </head>
 <body>
 <form:form action="boardModifyPro" method="post" name="modifyform"
-   commandName="board">
-<input type="hidden" name="boardNum" value="${board.boardNum }">
+   commandName="libraryBoardCommand">
+<form:hidden  path="boardNum" />
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
@@ -44,7 +44,7 @@
 			<div align="center">파일 첨부</div>
 		</td>
 		<td>
-			${board.originalfileName } / ${board.fileSize }
+			
 		</td>
 	</tr>
 	<tr>

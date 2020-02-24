@@ -11,6 +11,10 @@
 		class = "Service.Library.LibraryBoardListService" />
 	<bean id="libraryBoardDetailService" 
 		class = "Service.Library.LibraryBoardDetailService" />
+	<bean id="libraryModifyService" 
+		class = "Service.Library.LibraryModifyService" />
+	<bean id="libraryBoardDeleteService" 
+		class = "Service.Library.LibraryBoardDeleteService" />
 	<bean id="libraryBoardDAO"
 		class= "Model.DAO.LibraryBoardDAO" />
 </beans>

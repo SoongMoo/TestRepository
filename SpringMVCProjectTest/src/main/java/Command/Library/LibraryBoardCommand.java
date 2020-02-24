@@ -1,10 +1,18 @@
 package Command.Library;
 
 public class LibraryBoardCommand {	
+	private Integer boardNum;
 	private String boardName;
 	private String boardPass;
 	private String boardSubject;
 	private String boardContent;
+	
+	public Integer getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(Integer boardNum) {
+		this.boardNum = boardNum;
+	}
 	public String getBoardName() {
 		return boardName;
 	}

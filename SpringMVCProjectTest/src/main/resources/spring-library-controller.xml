@@ -7,4 +7,8 @@
 >
 	<bean class="Controller.Library.LibraryBoardController" />
 	<bean class="Controller.Library.LibraryBoardDetailController" />
+	<bean class="Controller.Library.LibraryBoardModifyProController" />
+	<bean class="Controller.Library.LibraryBoardDeleteController" />
+
+
 </beans>

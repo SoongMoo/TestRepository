@@ -43,6 +43,19 @@ public class LibraryBoardDAO {
 	public LibraryBoardDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	public Integer libraryDelete(String boardNum,String boardPass) {
+		sql = " delete from libraryboard"
+			+ " where BOARD_NUM = ? and BOARD_PASS =? ";
+		return jdbcTemplate.update(sql,boardNum,boardPass);
+	}
+	public Integer libraryBoardUpdate(LibraryBoardDTO dto) {
+		sql = "update libraryboard "
+			+ " set BOARD_SUBJECT = ? , BOARD_CONTENT = ? "
+			+ " where BOARD_NUM = ? and BOARD_PASS =? ";
+		return jdbcTemplate.update(sql,dto.getBoardSubject(),
+				dto.getBoardContent(),dto.getBoardNum(),
+				dto.getBoardPass());
+	}
 	public void boardReadcountUpdate(Long boardNum) {
 		sql = "update libraryboard "
 			+ " set READ_COUNT = READ_COUNT + 1 "

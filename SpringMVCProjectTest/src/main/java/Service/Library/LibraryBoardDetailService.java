@@ -15,9 +15,10 @@ public class LibraryBoardDetailService {
 		libraryBoardDAO.boardReadcountUpdate(boardNum);
 		LibraryBoardDTO dto = 
 				libraryBoardDAO.boardDetail(boardNum, tablename);
+		
 		if(num != 1) {
 			dto.setBoardContent(dto.getBoardContent().replace("\n", "<br />"));
 		}
-		model.addAttribute("board", dto);
+		model.addAttribute("libraryBoardCommand", dto);
 	}
 }

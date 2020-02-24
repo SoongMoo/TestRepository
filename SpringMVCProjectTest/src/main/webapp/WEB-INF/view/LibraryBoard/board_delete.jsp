@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name="libraryBoard/deleteForm" action="#" 
-	method="post">
+<form name="frm" action="boardDeletePro" method="post">
+<input type="hidden" name = "boardNum" value="${num }"> 
 <table border=1>
 <tr>
 	<td>
@@ -16,11 +16,12 @@
 	</td>
 	<td>
 		<input name="boardPass" type="password">
+		<div >${passError }</div>
 	</td>
 </tr>
 <tr>
 	<td colspan=2 align=center>
-		<a href="javascript:deleteForm.submit()">삭제</a>
+		<a href="javascript:frm.submit()">삭제</a>
 		&nbsp;&nbsp;
 		<a href="javascript:history.go(-1)">돌아가기</a>
 	</td>

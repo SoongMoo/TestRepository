@@ -12,15 +12,15 @@
 		<td colspan="2">MVC 게시판</td>
 	</tr>
 	<tr align="left" valign="middle">
-		<td colspan="2">글쓴이 : ${board.boardName }
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.ipAddr }</td>
+		<td colspan="2">글쓴이 : ${libraryBoardCommand.boardName }
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${libraryBoardCommand.ipAddr }</td>
 	</tr>	
 	<tr>
 		<td style="font-family:돋음; font-size:12" height="16">
 			<div align="center">제 목&nbsp;&nbsp;</div>
 		</td>
 		<td style="font-family:돋음; font-size:12">
-		${board.boardSubject }
+		${libraryBoardCommand.boardSubject }
 		</td>
 	</tr>
 	
@@ -36,7 +36,7 @@
 			<table border=0 width=490 height=250 style="table-layout:fixed">
 				<tr>
 					<td valign=top style="font-family:돋음; font-size:12">
-					${board.boardContent }
+					${libraryBoardCommand.boardContent }
 					</td>
 				</tr>
 			</table>
@@ -48,9 +48,9 @@
 		</td>
 		<td style="font-family:돋음; font-size:12">
 		
-		<a href="update/${board.storeFileName}">
-			${board.originalfileName } 
-		</a> / ${board.fileSize }
+		<a href="update/${libraryBoardCommand.storeFileName}">
+			${libraryBoardCommand.originalfileName } 
+		</a> / ${libraryBoardCommand.fileSize }
 		</td>
 	</tr>
 	<tr bgcolor="cccccc">
@@ -61,10 +61,10 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			<a href="boardModify?num=${board.boardNum }">
+			<a href="boardModify?num=${libraryBoardCommand.boardNum }">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a href="boardDelete?num=${board.boardNum }">
+			<a href="boardDelete?num=${libraryBoardCommand.boardNum }">
 			[삭제]
 			</a>&nbsp;&nbsp;
 			<a href="library">[목록]</a>&nbsp;&nbsp;

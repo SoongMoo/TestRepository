@@ -20,15 +20,9 @@ public class MemberJoinService {
 	public Integer execute(MemberCommand memberCommand) {
 		Integer result = 0;
 		MemberDTO memberDTO = new MemberDTO();
-		SimpleDateFormat dt = new SimpleDateFormat("yyyyMMdd");
-		memberDTO.setUserAddr(memberCommand.getUserAddr());
-		Date date = null;
-		try {
-			date = dt.parse(memberCommand.getUserBirth());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		Timestamp userBirth = new Timestamp(date.getTime());
+				memberDTO.setUserAddr(memberCommand.getUserAddr());
+		Timestamp userBirth = new Timestamp(
+				memberCommand.getUserBirth().getTime());
 		memberDTO.setUserBirth(userBirth);
 		memberDTO.setUserEmail(memberCommand.getUserEmail());
 		memberDTO.setUserGender(memberCommand.getUserGender());

@@ -1,5 +1,7 @@
 package Controller.Library;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +26,9 @@ public class LibraryBoardDeleteController {
 	public String deleteLibrary(
 			@RequestParam(value = "boardNum") String boardNum,
 			@RequestParam(value = "boardPass") String boardPass,
-			Model model) {
+			HttpServletRequest request) {
 		String path = libraryBoardDeleteService.libraryDelete(
-										boardNum,boardPass,model);
+										boardNum,boardPass,request);
 		return 	path;
 	}
 }

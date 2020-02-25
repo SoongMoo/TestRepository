@@ -17,6 +17,7 @@
 			<font size=2>글 개수 : ${count }</font>
 		</td>
 	</tr>
+	
 	<tr align="center" valign="middle" bordercolor="#333333">
 		<td style="font-family:Tahoma;font-size:8pt;" width="8%" height="26">
 			<div align="center">번호</div>
@@ -43,15 +44,22 @@
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left">
-			<a href="boardDetail?num=${board.boardNum }">
-			${board.boardSubject }</a>
+				<c:forEach begin="1" end="${board.boardReLev }" step="1">
+				▶
+				</c:forEach>
+			<a href="./BoardDetailAction.ab?num=${board.boardNum }">
+			${board.boardSubject }
+			</a>
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">${board.boardName }</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${board.boardDate }</div>
+			<div align="center">
+			<fmt:formatDate value="${board.boardDate }" type="date" 
+			pattern="yyyy-MM-dd"/> 
+			</div>
 		</td>	
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">${board.readCount }</div>
@@ -60,16 +68,20 @@
 	</c:forEach>
 	<tr align=center height=20>
 		<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
-
-			<c:if test="${ page > 1}">
-			<a href="library?page=${ page -1 }">[이전]</a>&nbsp;
+			<c:if test="${page <=1 }">
+			[이전]&nbsp;
 			</c:if>
-				<c:forEach var="i" begin="${startPage}" end="${endPage }" 
-							step="1">
-				<a href="library?page=${i }">${i }</a>&nbsp;
-				</c:forEach>
+			<c:if test="${page > 1 }">
+			<a href="answerBoard.ab?page=${page -1 }">[이전]</a>&nbsp;
+			</c:if>
+			<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+			<a href="answerBoard.ab?page=${i }">${i }</a>&nbsp;
+			</c:forEach>
+			<c:if test="${page >= maxPage }">
+			[다음]
+			</c:if>
 			<c:if test="${page < maxPage }">
-			<a href="library?page=${page +1 }">[다음]</a>
+			<a href="./answerBoard.ab?page=${page +1 }">[다음]</a>
 			</c:if>
 		</td>
 	</tr>

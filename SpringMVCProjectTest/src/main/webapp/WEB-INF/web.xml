@@ -21,6 +21,8 @@
 			classpath:spring-board-beans.xml
 			classpath:spring-library-controller.xml
 			classpath:spring-library-beans.xml
+			classpath:spring-answer-controller.xml
+			classpath:spring-answer-beans.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,20 +12,23 @@
 	</script>
 </head>
 <body>
-<form:form action="boardModifyPro" method="post" name="modifyform"
-   commandName="libraryBoardCommand">
-<form:hidden  path="boardNum" />
+<form action="BoardModifyAction.ab" method="post" name="modifyform">
+<input type="hidden" name="BOARD_NUM" value="${board.boardNum }">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
-		<td colspan="5">MVC 게시판</td>
+		<td colspan="2">MVC 게시판</td>
 	</tr>
+	<tr align="left" valign="middle">
+		<td colspan="2">글쓴이 : ${board.boardName }
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${board.ipAddr }</td>
+	</tr>	
 	<tr>
 		<td height="16" style="font-family:돋음; font-size:12">
 			<div align="center">제 목</div>
 		</td>
 		<td>
-			<form:input path="boardSubject" size="50" maxlength="100" />
-			<form:errors path="boardSubject" />
+			<input name="BOARD_SUBJECT" size="50" maxlength="100" 
+				value="${board.boardSubject }">
 		</td>
 	</tr>
 	<tr>
@@ -35,8 +36,18 @@
 			<div align="center">내 용</div>
 		</td>
 		<td>
-			<form:textarea path="boardContent" cols="67" rows="15" />
-			<form:errors path="boardContent" />
+			<textarea name="BOARD_CONTENT" cols="67" rows="15">${board.boardContent }</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td style="font-family:돋음; font-size:12">
+			<div align="center">첨부파일</div>
+		</td>
+		<td style="font-family:돋음; font-size:12">
+		
+		<a href="AnswerBoard/update/${board.originalfileName }">
+			${board.storeFileName }
+		</a>
 		</td>
 	</tr>
 	<tr>
@@ -44,8 +55,7 @@
 			<div align="center">비밀번호</div>
 		</td>
 		<td>
-			<form:password path="boardPass" />
-			<form:errors path="boardPass" />
+			<input name="BOARD_PASS" type="password">
 		</td>
 	</tr>
 	
@@ -64,6 +74,6 @@
 		</td>
 	</tr>
 </table>
-</form:form>
+</form>
 </body>
 </html>

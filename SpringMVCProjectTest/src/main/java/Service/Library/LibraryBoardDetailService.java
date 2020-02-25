@@ -19,6 +19,12 @@ public class LibraryBoardDetailService {
 		if(num != 1) {
 			dto.setBoardContent(dto.getBoardContent().replace("\n", "<br />"));
 		}
+		String [] oriFile = dto.getOriginalfileName().split("-");
+		String [] strFile = dto.getStoreFileName().split("-");
+		String [] fileSize = dto.getFileSize().split("-");
 		model.addAttribute("libraryBoardCommand", dto);
+		model.addAttribute("originalfileName", oriFile);
+		model.addAttribute("storeFileName", strFile);
+		model.addAttribute("fileSize", fileSize);
 	}
 }

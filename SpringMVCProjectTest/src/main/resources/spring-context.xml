@@ -18,6 +18,9 @@
 		<mvc:jsp prefix="/WEB-INF/view/"/>
 	</mvc:view-resolvers>
 	
+	<mvc:resources location="/WEB-INF/view/" mapping="/**" 
+	cache-period="14400"/>
+	
 	<bean id="messageSource" 
 		class = "org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
@@ -41,6 +44,8 @@
 		<property name="maxUploadSize" value="100000000" />
 	    <property name="maxInMemorySize" value="100000000" />
 	</bean>	
+	
+	
 </beans>
 
 

@@ -48,8 +48,37 @@ public class AnswerBoardDAO {
 	public AnswerBoardDAO(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	public void replyInsert(AnswerBoardDTO dto) {
+		sql = " update answerboard "  // 답글이 있는 경우 답글들의 순서를 1씩증
+			+ " set board_re_seq = board_re_seq + 1 "
+			+ " where board_re_ref = ? and board_re_seq > ? ";
+		jdbcTemplate.update(
+				sql,dto.getBoardReRef(),dto.getBoardReSeq());
+		
+		Integer seq= dto.getBoardReSeq()+1;
+		Integer lev = dto.getBoardReLev()+1;
+		
+		sql = "insert into answerboard( " + COLUMNS + " ) "
+				+ " values (num_seq.nextval,?,?,?,?,?,sysdate,?,0,?,?,?, "
+				+ " ?, ?, ?) ";
+		jdbcTemplate.update(sql, dto.getUserId(),dto.getBoardName(),
+					dto.getBoardPass(),dto.getBoardSubject(),dto.getBoardContent(),
+					dto.getIpAddr(), dto.getOriginalfileName(), 
+					dto.getStoreFileName(), dto.getFileSize(),
+					dto.getBoardReRef(),lev,seq);
+	}
+	public AnswerBoardDTO answerDetailSelect(Integer boardNum) {
+		sql = "select " + COLUMNS + " from answerboard "
+			+ " where board_num = ? ";
+			
+		System.out.println(sql);
+		List<AnswerBoardDTO> list = 
+				jdbcTemplate.query(sql, answerBoardMapper, boardNum);
+		return list.isEmpty() ? null : list.get(0);
+	}
 	public List<AnswerBoardDTO> answerAllSelect(){
-		sql = "select " + COLUMNS + " from answerboard";
+		sql = " select " + COLUMNS + " from answerboard"
+			+ " order by BOARD_RE_REF DESC, BOARD_RE_SEQ";
 		List<AnswerBoardDTO> list = 
 				jdbcTemplate.query(sql, answerBoardMapper);
 		return list;

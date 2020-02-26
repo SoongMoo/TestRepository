@@ -6,5 +6,8 @@
 	    "
 >
 	<bean class="Controller.Answer.AnswerBoardController" />
-	<bean class="Controller.Answer.AnswerBoardWriteController" />	
+	<bean class="Controller.Answer.AnswerBoardWriteController" />
+	<bean class="Controller.Answer.AnswerBoardDetailController" />
+	<bean class="Controller.Answer.AnswerBoardReplyController" />
+	
 </beans>

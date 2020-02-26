@@ -47,7 +47,7 @@
 				<c:forEach begin="1" end="${board.boardReLev }" step="1">
 				▶
 				</c:forEach>
-			<a href="./BoardDetailAction.ab?num=${board.boardNum }">
+			<a href="boardDetail/${board.boardNum }">
 			${board.boardSubject }
 			</a>
 			</div>

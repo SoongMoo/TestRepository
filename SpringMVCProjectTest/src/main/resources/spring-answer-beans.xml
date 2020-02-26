@@ -11,5 +11,8 @@
 		class="Service.Answer.AnswerWriteService" />
 	<bean id="answerBoardListService" 
 		class="Service.Answer.AnswerBoardListService" />
-		
+	<bean id="answerBoardDetailService" 
+		class="Service.Answer.AnswerBoardDetailService" />
+	<bean id="answerBoardReplyService" 
+		class="Service.Answer.AnswerBoardReplyService" />
 </beans>

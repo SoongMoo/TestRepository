@@ -19,7 +19,7 @@
 	</mvc:view-resolvers>
 	<mvc:resources location="/WEB-INF/view/" mapping="/**" 
 	cache-period="14400"/>
- 
+
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/edit/**" />

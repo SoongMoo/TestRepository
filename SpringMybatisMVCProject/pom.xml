@@ -7,6 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>SpringMybatisMVCProject Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <!-- 버전 -->
   <properties>
   	<org.springframework-version>4.1.0.RELEASE</org.springframework-version>
   	<java-version>1.8</java-version>
@@ -33,7 +34,12 @@
     	<artifactId>spring-context</artifactId>
     	<version>${org.springframework-version}</version>
     </dependency>
-    <!-- web-service -->
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>  
+    <!-- was -->
 	<dependency>
 		<groupId>javax.servlet.jsp</groupId>
 		<artifactId>jsp-api</artifactId>
@@ -46,12 +52,8 @@
 		<version>3.0.1</version>
 		<scope>provided</scope>
 	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>
-		<version>${org.springframework-version}</version>
-	</dependency>  
-	<!-- jstl -->
+
+	<!-- jstl, form spring fmt core -->
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>jstl</artifactId>
@@ -92,9 +94,9 @@
 		<version>1.4.7</version>
 	</dependency>
 	<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>4.1.0.RELEASE</version>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>4.1.0.RELEASE</version>
     </dependency>
 	<!-- mybatis -->
 	<dependency>

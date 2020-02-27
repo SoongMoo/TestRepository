@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.Library.LibraryBoardCommand;
-import Contoller.Encrypt;
+import Controller.Encrypt;
 import Model.DAO.LibraryBoardDAO;
 import Model.DTO.AuthInfo;
 import Model.DTO.LibraryBoardDTO;

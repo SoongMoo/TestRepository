@@ -1,4 +1,4 @@
-package Contoller;
+package Controller;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -12,7 +12,7 @@ public class Encrypt {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-        md.update(userPw.getBytes()); // ¾ÏÈ£¹® »ý¼º
+        md.update(userPw.getBytes()); // ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         byte byteData[] = md.digest();
         sb = new StringBuffer(); 
         for(int i = 0 ; i < byteData.length ; i++){

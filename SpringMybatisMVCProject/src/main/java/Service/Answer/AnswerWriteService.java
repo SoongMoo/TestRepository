@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import Command.Answer.AnswerCommand;
-import Contoller.Encrypt;
+import Controller.Encrypt;
 import Model.DAO.AnswerBoardDAO;
 import Model.DTO.AnswerBoardDTO;
 import Model.DTO.AuthInfo;

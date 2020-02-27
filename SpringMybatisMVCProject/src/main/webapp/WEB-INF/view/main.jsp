@@ -45,12 +45,12 @@
 <a href ="memberDetail">내 정보</a>
 <a href ="logout" >로그아웃</a>
 <a href ="member/list">회원리스트</a>
-<a href ="board">공지사항 게시판</a>
+<a href ="board/boardlist">공지사항 게시판</a>
 <a href ="libraryBoard/library">일반 자료실</a>
 <a href ="answer/answerBoard">답변형 게시판</a>
 <a href ="commentBoard">댓글 게시판</a>
 <a href ="goodsList">상품목록</a> <!-- Ajax : JSON -->
 <a href="mailForm">메일전송</a>
-
+<a href = "survey" >설문지</a>
 </body>
 </html>

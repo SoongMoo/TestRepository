@@ -6,14 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<script language="javascript">
-	function addboard(){
-		frm.submit();
-	}
-	</script>
+
 </head>
 <body>
-<form:form action="WritePro" id="frm" name="frm" method="post"
+<form:form action="boardWritePro" id="frm" name="frm" method="post"
 commandName="boardCommand">
 
 <table cellpadding="0" cellspacing="0">
@@ -27,6 +23,7 @@ commandName="boardCommand">
 		<td>
 			<form:input path="boardName" size="10" maxlength="10" 
 				/>
+			<form:errors path="boardName" />
 		</td>
 	</tr>
 	<tr>
@@ -36,6 +33,7 @@ commandName="boardCommand">
 		<td>
 			<form:password path="boardPass" size="10" maxlength="10" 
 				/>
+			<form:errors path="boardPass" />
 		</td>
 	</tr>
 	<tr>
@@ -45,6 +43,7 @@ commandName="boardCommand">
 		<td>
 			<form:input path="boardSubject"  size="50" maxlength="100" 
 				/>
+			<form:errors path="boardSubject" />
 		</td>
 	</tr>
 	<tr>
@@ -62,8 +61,8 @@ commandName="boardCommand">
 	<tr><td colspan="2">&nbsp;</td></tr>
 	<tr align="center" valign="middle">
 		<td colspan="5">
-			<a href="javascript:addboard()">[등록]</a>&nbsp;&nbsp;
-			<a href="board">[뒤로]</a>
+			<a href="javascript:frm.submit();">[등록]</a>&nbsp;&nbsp;
+			<a href="boardlist">[목록]</a>
 		</td>
 	</tr>
 </table>

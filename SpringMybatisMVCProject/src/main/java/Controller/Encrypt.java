@@ -12,7 +12,7 @@ public class Encrypt {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-        md.update(userPw.getBytes()); // ��ȣ�� ����
+        md.update(userPw.getBytes()); 
         byte byteData[] = md.digest();
         sb = new StringBuffer(); 
         for(int i = 0 ; i < byteData.length ; i++){

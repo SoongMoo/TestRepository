@@ -1,10 +1,17 @@
 package Command.Board;
 
 public class BoardCommand {
+	private String userId;
 	private String boardName;
 	private String boardPass;
 	private String boardSubject;
 	private String boardContent;
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getBoardName() {
 		return boardName;
 	}

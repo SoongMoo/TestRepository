@@ -3,6 +3,9 @@
 	"-//mybatis.org//DTD Config 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	<typeAliases >
+		<typeAlias type="Model.DTO.BoardDTO" alias = "bdto" />
+		<typeAlias type="Model.DTO.MemberDTO" alias = "memdto" />
+	</typeAliases>
 </configuration>
 

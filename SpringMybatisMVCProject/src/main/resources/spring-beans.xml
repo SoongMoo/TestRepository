@@ -5,10 +5,17 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd
 	    "
 >
+	<bean id="loginRepository" 
+		class = "Repository.Member.LoginRepository" />
 	<bean id="memberRepository" 
 		class = "Repository.Member.MemberRepository" />
 	<bean id = "memberJoinService"  
 		class = "Service.Member.MemberJoinService"/>
+	<bean id = "authService"  
+		class = "Service.Member.AuthService"/>
+	<bean id = "memberListService"  
+		class = "Service.Member.MemberListService"/>
+		
 
 		
 </beans>

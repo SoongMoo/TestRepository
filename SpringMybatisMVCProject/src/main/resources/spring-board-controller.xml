@@ -5,4 +5,5 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
 	<bean class="Controller.Board.BoardController"/>
+	<bean class="Controller.Board.BoardDetailController"/>
 </beans>

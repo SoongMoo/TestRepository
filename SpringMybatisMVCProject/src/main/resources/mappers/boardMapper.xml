@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Mappers.boardMapper">
+<mapper namespace="boardMapper">
 <cache />
 	<sql id="basecolumn">
-		board_num,user_id,board_name,board_pass,
-		board_subject,board_content,board_date,
-		ip_addr,read_count
+		board_num,user_id,board_name,board_pass,board_subject,board_content,board_date,ip_addr,read_count
 	</sql>
-	<insert id="boardInsert" parameterType="bdto">
-		insert into board (<include refid="basecolumn" />) 
-		values(num_seq.nextval,#{userId},#{boardName},#{boardPass},
-		#{boardSubject},#{boardContent},sysdate,#{ipAddr},0)
+	<insert id="boardInsert"  parameterType="Model.DTO.BoardDTO">   <!-- paramterType:실제 값을 가지고 있는애 -->
+		insert into board (<include refid="basecolumn" />)
+		values(board_seq.nextval,#{userId},#{boardName},#{boardPass},#{boardSubject},#{boardContent},sysdate,#{ipAddr},0)
 	</insert>
+	
+	
 	<resultMap type="bdto" id="baseBoardMap">
-		<id column="board_num" jdbcType="BIGINT" property="boardNum" /> 
-		<result column="user_id" jdbcType="VARCHAR" property="userId" /> 
+		<!-- pk -->
+		<id column="board_num" jdbcType="BIGINT" property="boardNum"/>   
+		<!-- 일반속성 -->
+		<result column="user_id" jdbcType="VARCHAR" property="userId"/> 
 		<result column="board_name" jdbcType="VARCHAR" property="boardName"/>
 		<result column="board_pass" jdbcType="VARCHAR" property="boardPass"/>
-		<result column="board_subject" jdbcType="VARCHAR" property="boardSubject"/>
+		<result column="board_subject" jdbcType="VARCHAR" property="boardSubject"/>	
 		<result column="board_content" jdbcType="VARCHAR" property="boardContent"/>
 		<result column="board_date" jdbcType="TIMESTAMP" property="boardDate"/>
 		<result column="ip_addr" jdbcType="VARCHAR" property="ipAddr"/>
 		<result column="read_count" jdbcType="BIGINT" property="readCount"/>
 	</resultMap>
+	
+	
+	
 	<select id="boardSelect" parameterType="Integer" resultMap="baseBoardMap">
-		select <include refid="basecolumn" />
-		from board
+		select <include refid="basecolumn" /> from board
 		<where>
-			<if test="value != null">
-				board_num = #{boardNum}
+			<if test="value!=null">
+				board_num=#{boardNum}
 			</if>
+		
 		</where>
 	</select>
 </mapper>
-	

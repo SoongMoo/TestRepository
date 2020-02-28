@@ -11,6 +11,7 @@ import Command.Member.LoginCommand;
 public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String form(LoginCommand loginCommand) {
+		System.out.println("aaaa");
 		return "main";
 	}
 }

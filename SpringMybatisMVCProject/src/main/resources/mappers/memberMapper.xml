@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mappers.memberMapper" >
+<cache />
+	<sql id="basecolumn">
+		USER_ID,USER_PW,USER_NAME, USER_BIRTH, USER_GENDER, 
+		USER_EMAIL,USER_ADDR,USER_PH1, USER_PH2, USER_REGIST 
+	</sql>
+	<insert id="insertMember" parameterType="memdto" >
+		insert into member ( <include refid="basecolumn" />  )
+		values(#{userId},#{userPw},#{userName},#{userBirth},
+		#{userGender},#{userEmail},#{userAddr},#{userPh1},
+		#{userPh2},sysdate)
+	</insert>
+	<resultMap type="memdto" id="baseMember" >
+		<constructor>
+			<idArg column="user_Id" javaType="string" />
+			<arg column="USER_PW" javaType="string" />
+			<arg column="USER_NAME" javaType="string" />
+			<arg column="USER_BIRTH" javaType="java.sql.Timestamp"/>
+			<arg column="USER_GENDER" javaType="string" />
+			<arg column="USER_EMAIL" javaType="string" />
+			<arg column="USER_ADDR" javaType="string" />
+			<arg column="USER_PH1" javaType="string" />
+			<arg column="USER_PH2" javaType="string" />
+			<arg column="USER_REGIST" javaType="java.sql.Timestamp"/>
+		</constructor>
+	</resultMap>
+	<select id="memberList" parameterType="startEnd" 
+						resultMap="baseMember">
+		select rn, <include refid="basecolumn" />
+		from (select rownum rn, <include refid="basecolumn" />
+			 from ( select 
+						<include refid="basecolumn" />
+					from member
+					order by user_regist desc))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage} 
+	</select>
+	<select id="memberCount" resultType="int">
+		select count(*) from member
+	</select>
+	
+	
+</mapper>

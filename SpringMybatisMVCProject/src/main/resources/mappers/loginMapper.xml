@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mappers.loginMapper">
+<cache />
+	<sql id="basecolumn">
+		USER_ID,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER
+		, USER_EMAIL, USER_ADDR, USER_PH1,USER_PH2, USER_REGIST
+	</sql>
+	<resultMap type="memdto" id="baseMember" >
+		<constructor>
+			<idArg column="user_Id" javaType="string" />
+			<arg column="USER_PW" javaType="string" />
+			<arg column="USER_NAME" javaType="string" />
+			<arg column="USER_BIRTH" javaType="java.sql.Timestamp"/>
+			<arg column="USER_GENDER" javaType="string" />
+			<arg column="USER_EMAIL" javaType="string" />
+			<arg column="USER_ADDR" javaType="string" />
+			<arg column="USER_PH1" javaType="string" />
+			<arg column="USER_PH2" javaType="string" />
+			<arg column="USER_REGIST" javaType="java.sql.Timestamp"/>
+		</constructor>
+	</resultMap>
+	<select id="selectUser" parameterType="memdto" 
+						resultMap="baseMember">
+		select 
+			<include refid="basecolumn" />
+		from member
+		<trim prefix="where" prefixOverrides="AND | OR " >
+			<if test="userPw != null">
+			user_pw = #{userPw}
+			</if>
+			<if test="userId != null">
+			and user_id = #{userId}
+			</if>
+		</trim>
+	</select>
+</mapper>

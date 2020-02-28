@@ -9,8 +9,7 @@
 
 </head>
 <body>
-<form:form action="boardWritePro" id="frm" name="frm" method="post"
-commandName="boardCommand">
+<form:form action="boardWritePro" id="frm" name="frm" method="post" commandName="boardCommand">
 
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
@@ -21,9 +20,8 @@ commandName="boardCommand">
 			<div align="center">글쓴이</div>
 		</td>
 		<td>
-			<form:input path="boardName" size="10" maxlength="10" 
-				/>
-			<form:errors path="boardName" />
+			<form:input path="boardName" size="10" maxlength="10" />
+			<form:errors  path="boardName"/> 
 		</td>
 	</tr>
 	<tr>
@@ -31,8 +29,7 @@ commandName="boardCommand">
 			<div align="center">비밀번호</div>
 		</td>
 		<td>
-			<form:password path="boardPass" size="10" maxlength="10" 
-				/>
+			<form:password path="boardPass" size="10" maxlength="10" />
 			<form:errors path="boardPass" />
 		</td>
 	</tr>
@@ -41,8 +38,7 @@ commandName="boardCommand">
 			<div align="center">제 목</div>
 		</td>
 		<td>
-			<form:input path="boardSubject"  size="50" maxlength="100" 
-				/>
+			<form:input path="boardSubject"  size="50" maxlength="100" />
 			<form:errors path="boardSubject" />
 		</td>
 	</tr>
@@ -62,7 +58,7 @@ commandName="boardCommand">
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<a href="javascript:frm.submit();">[등록]</a>&nbsp;&nbsp;
-			<a href="boardlist">[목록]</a>
+			<a href="boardList">[목록]</a>
 		</td>
 	</tr>
 </table>

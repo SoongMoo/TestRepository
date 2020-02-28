@@ -43,7 +43,7 @@
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left"> 
-			<a href="<c:url value='/board/boardDetail/${board.boardNum }' />">
+			<a href="boardDetail?num=${board.boardNum }" >
 				${board.boardSubject }
 			</a>
 			</div>

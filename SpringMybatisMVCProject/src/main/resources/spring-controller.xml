@@ -6,4 +6,7 @@
 	    "
 >
 	<bean class="Controller.Member.MemberController" />
+	<bean class="Controller.Member.LoginController" />
+	<bean class="Controller.Member.LogoutController" />
+	<bean class="Controller.Member.MemberListController" />
 </beans>

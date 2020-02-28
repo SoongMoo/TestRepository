@@ -1,19 +1,19 @@
 package Service.Member;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import Command.Member.MemberCommand;
-import Controller.Encrypt;
 import Model.DTO.MemberDTO;
 import Repository.Member.MemberRepository;
 
 public class MemberJoinService {
 	@Autowired
 	MemberRepository memberRepository;
+	@Autowired
+	BCryptPasswordEncoder bcryptPasswordEncoder;
 	public Integer execute(MemberCommand memberCommand) {
 		Integer result = null;
 		MemberDTO memberDTO = new MemberDTO();
@@ -28,12 +28,9 @@ public class MemberJoinService {
 		memberDTO.setUserPh1(memberCommand.getUserPh1());
 		memberDTO.setUserPh2(memberCommand.getUserPh2());
 		memberDTO.setUserPw(
-				Encrypt.getEncryption(memberCommand.getUserPw()));
-		try {
-			result = memberRepository.insertMember(memberDTO);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+				bcryptPasswordEncoder.encode(memberCommand.getUserPw()));
+		System.out.println(memberDTO.getUserPw());
+		result = memberRepository.insertMember(memberDTO);
 		return result;
 	}
 }

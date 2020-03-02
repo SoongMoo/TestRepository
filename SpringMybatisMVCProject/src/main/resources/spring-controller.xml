@@ -12,4 +12,6 @@
 	<bean class="Controller.Member.MemberDetailController" />
 	<bean class="Controller.Member.MemberModifyController" />
 	<bean class="Controller.Member.MemberDeleteController" />
+	<bean class="Controller.Member.MemberPasswordController" />
+	<bean class="Controller.Member.PwModifyProController" />
 </beans>

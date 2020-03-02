@@ -24,7 +24,13 @@
 	<bean id = "memberModifyService"  
 		class = "Service.Member.MemberModifyService"/>
 	<bean id = "memberDeleteSevice"  
-		class = "Service.Member.MemberDeleteSevice"/>	
+		class = "Service.Member.MemberDeleteSevice"/>
+	<bean id = "pwModifyService"  
+		class = "Service.Member.PwModifyService"/>	
+	<bean id = "pwModifyProService"  
+		class = "Service.Member.PwModifyProService"/>	
+		
+	
 		
 	
 

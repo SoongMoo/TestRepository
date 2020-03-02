@@ -34,6 +34,8 @@ public class MemberRepository extends AbstractRepository{
 		}catch(Exception e) {
 			e.printStackTrace();
 			sqlSession.rollback();
+		}finally {
+			sqlSession.close();
 		}
 		return result;
 	}

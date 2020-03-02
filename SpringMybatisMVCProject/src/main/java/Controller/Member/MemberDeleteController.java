@@ -13,8 +13,8 @@ public class MemberDeleteController {
 	MemberDeleteSevice memberDeleteSevice;
 	@RequestMapping("/edit/memberInfoDel")
 	public String memberDelete(@RequestParam(value = "id") String userId) {
-		
-		return "redirct:/member/list";  // 회원 삭제
+		memberDeleteSevice.memberDelete(userId);
+		return "redirect:/member/list";  // 회원 삭제
 		//return "redirect:/logout"; 탈퇴
 	}
 	

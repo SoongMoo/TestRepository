@@ -1,5 +1,7 @@
 package Model.DTO;
 
+
+
 public class StartEndPageDTO {
 	Long startPage;
 	Long endPage;

@@ -2,6 +2,8 @@ package Command.Answer;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 public class AnswerCommand {
 	private Integer boardReLev;
 	private Integer boardReRef;

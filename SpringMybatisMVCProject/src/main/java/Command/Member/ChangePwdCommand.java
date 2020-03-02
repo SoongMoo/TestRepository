@@ -1,5 +1,7 @@
 package Command.Member;
 
+
+
 public class ChangePwdCommand {
 	private String userId;
 	private String pw;

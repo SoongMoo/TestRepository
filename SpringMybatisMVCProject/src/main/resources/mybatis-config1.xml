@@ -23,6 +23,7 @@
 	<mappers>
 		<mapper resource="mappers/memberMapper.xml"/>
 		<mapper resource="mappers/loginMapper.xml"/>
+		<mapper resource="mappers/memberDMLMapper.xml"/>
 	</mappers>
 </configuration>
  

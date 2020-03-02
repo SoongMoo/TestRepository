@@ -5,6 +5,10 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd
 	    "
 >
+	
+	
+	<bean id="memberDMLRepository" 
+		class = "Repository.Member.MemberDMLRepository" />
 	<bean id="loginRepository" 
 		class = "Repository.Member.LoginRepository" />
 	<bean id="memberRepository" 
@@ -15,7 +19,14 @@
 		class = "Service.Member.AuthService"/>
 	<bean id = "memberListService"  
 		class = "Service.Member.MemberListService"/>
+	<bean id = "memberDetailService"  
+		class = "Service.Member.MemberDetailService"/>
+	<bean id = "memberModifyService"  
+		class = "Service.Member.MemberModifyService"/>
+	<bean id = "memberDeleteSevice"  
+		class = "Service.Member.MemberDeleteSevice"/>	
 		
+	
 
 		
 </beans>

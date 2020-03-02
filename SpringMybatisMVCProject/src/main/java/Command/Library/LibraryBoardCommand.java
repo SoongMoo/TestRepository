@@ -2,6 +2,8 @@ package Command.Library;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 public class LibraryBoardCommand {	
 	private Integer boardNum;
 	private String boardName;

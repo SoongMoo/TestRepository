@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,12 @@ $(function(){
 <form:form name ="frm" id ="frm" method = "post" action ="memberModifyPro"
 	commandName="memberCommand">
 	<form:hidden path="userId"/>
+	
+	<input type="hidden" name="userBirth" 
+	    value ="<fmt:formatDate 
+	              value='${memberCommand.userBirth}' 
+		          type='date' pattern='yyyyMMdd' />" />
+
 <table border = 1  width = 600 align = "center" cellpadding = 3 >
 	<tr><td colspan=2> 회원정보 수정 </td></tr>
 	<tr><td >아이디와 비번</td>
@@ -40,7 +47,10 @@ $(function(){
 	<form:hidden path="userBirth"/>
 	<form:hidden path="userGender"/>
 	<tr><td> 생년월일 및 성별</td>
-		<td>${memberCommand.userBirth} / ${memberCommand.userGender}</td>
+		<td><fmt:formatDate 
+	              value='${memberCommand.userBirth}' 
+		          type='date' pattern='yyyy-MM-dd' />
+		           / ${memberCommand.userGender}</td>
 	</tr>
 	<tr><td>사용자 이메일</td>
 	    <td><form:input id ="email" path ="userEmail" />

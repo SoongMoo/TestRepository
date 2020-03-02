@@ -9,6 +9,8 @@ import org.springframework.validation.Validator;
 
 import Command.Member.MemberCommand;
 
+
+
 public class MemberCommandValidator implements Validator{
 	private static final String emailRegExp =
 			"^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)*@(?:\\w+\\.)+\\w+$";

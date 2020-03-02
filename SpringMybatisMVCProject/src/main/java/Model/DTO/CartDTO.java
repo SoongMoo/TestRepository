@@ -2,6 +2,7 @@ package Model.DTO;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class CartDTO implements Serializable{
 	Integer goodsSeq;
 	String userId   ;

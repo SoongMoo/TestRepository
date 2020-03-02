@@ -1,8 +1,10 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class GoodsDTO {
+@SuppressWarnings("serial")
+public class GoodsDTO implements Serializable{
 	Integer goodsSeq ;
 	String goodsNum ;
 	String userId ;

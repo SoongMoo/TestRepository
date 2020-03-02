@@ -6,6 +6,8 @@ import org.springframework.validation.Validator;
 
 import Command.Member.LoginCommand;
 
+
+
 public class LoginCommandValidator implements Validator {
 
 	public boolean supports(Class<?> clazz) {

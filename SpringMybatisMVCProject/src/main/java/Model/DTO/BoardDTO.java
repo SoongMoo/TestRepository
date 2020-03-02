@@ -2,6 +2,8 @@ package Model.DTO;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+
+
 @SuppressWarnings("serial")
 public class BoardDTO implements Serializable{
 	Integer boardNum;

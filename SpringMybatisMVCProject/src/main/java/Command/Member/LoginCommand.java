@@ -1,5 +1,7 @@
 package Command.Member;
 
+
+
 public class LoginCommand {
 	private String id1;
 	private Boolean idStore;

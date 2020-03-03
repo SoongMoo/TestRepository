@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Repository.Mapper.CommentMapperDynamic">
+<sql id="baseCommentColumn">
+	COMMENT_NO,CUSER_ID,COMMENT_SUBJECT,COMMENT_CONTENT,REG_DATE
+</sql>
+<sql id="baseMemberColumn">
+	USER_ID,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER
+	, USER_EMAIL, USER_ADDR, USER_PH1,USER_PH2, USER_REGIST
+</sql>
+<resultMap type="memdto" id="associationResultMap">
+	<id column="user_id" jdbcType="VARCHAR" property="userId"/>
+	<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
+	<result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+	<result column="USER_BIRTH" jdbcType="TIMESTAMP" property="userBirth"/>
+	<result column="USER_GENDER" jdbcType="VARCHAR" property="userGender"/>
+	<result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
+	<result column="USER_ADDR" jdbcType="VARCHAR" property="userAddr"/>
+	<result column="USER_PH1" jdbcType="VARCHAR" property="userPh1"/>
+	<result column="USER_PH2" jdbcType="VARCHAR" property="userPh2"/>
+	<result column="USER_REGIST" jdbcType="TIMESTAMP" property="userRegist"/>
+	<association property="commentDTO" javaType="comment" column="cuser_id">
+		<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+		<id column="cuser_id" jdbcType="VARCHAR" property="cuserId"/>
+		<result column="reg_date" jdbcType="TIMESTAMP" property="regDate"/>
+		<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject"/>
+		<result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>
+	</association>
+</resultMap>
+
+
+<resultMap type="memdto" id="baseMember">
+	<id column="user_id" jdbcType="VARCHAR" property="userId"/>
+	<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
+	<result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+	<result column="USER_BIRTH" jdbcType="TIMESTAMP" property="userBirth"/>
+	<result column="USER_GENDER" jdbcType="VARCHAR" property="userGender"/>
+	<result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
+	<result column="USER_ADDR" jdbcType="VARCHAR" property="userAddr"/>
+	<result column="USER_PH1" jdbcType="VARCHAR" property="userPh1"/>
+	<result column="USER_PH2" jdbcType="VARCHAR" property="userPh2"/>
+	<result column="USER_REGIST" jdbcType="TIMESTAMP" property="userRegist"/>
+</resultMap>
+<resultMap type="reply" id="replyBaseMap">
+		<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+		<id column="cuser_id" jdbcType="VARCHAR" property="cuserId"/>
+		<id column="reply_no" jdbcType="BIGINT" property="replyNo"/>
+		<id column="ruser_id" jdbcType="VARCHAR" property="ruserId"/>
+		<result column="reply_content" jdbcType="VARCHAR" property="replyContent"/>
+		<result column="reg_date" jdbcType="TIMESTAMP" property="regDate"/>
+</resultMap>
+<resultMap type="replyUser" id="aaaa">
+	<association property="replyDTO" column="ruser_id" javaType="reply" 
+	resultMap="replyBaseMap"/>
+	<association property="memberDTO" column="user_id" javaType="memdto" 
+	resultMap="baseMember" />
+</resultMap>
+<select id="commentAssociation" resultMap="associationResultMap">
+	select <include refid="baseCommentColumn" />, 
+		   <include refid="baseMemberColumn" />
+	from member m, comment1 c
+	where c.cuser_id = m.user_id
+</select>
+</mapper>

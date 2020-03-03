@@ -5,6 +5,12 @@
 	<properties resource="mybatis.properties" >
 		<property name="ddd.password" value="STUDY"/>
 	</properties>
+	<settings>
+		<setting value="false" name="cacheEnabled"/>
+		<setting value="true" name="useGeneratedKeys"/>
+		<setting value="true" name="mapUnderscoreToCamelCase"/>
+		<setting value="PARTIAL" name="autoMappingBehavior"/>
+	</settings>
 	<typeAliases>
 		<typeAlias type="Model.DTO.MemberDTO" alias = "memdto" />
 		<typeAlias type="Model.DTO.StartEndPageDTO" alias="startEnd"/>
@@ -19,6 +25,15 @@
 				<property name="username" value="${ccc.userName}"/>
 				<property name="password" value="${ddd.password}"/>
 			</dataSource>
+		</environment>
+		<environment id="release">
+			<transactionManager type="JDBC" />
+				<dataSource type="POOLED">
+					<property value="${jdbc.driver}" name="driver" />
+					<property value="${jdbc.url}" name="url" />
+					<property value="${ccc.userName}" name="username" />
+					<property value="${ddd.password}" name="password" />
+				</dataSource>
 		</environment>
 	</environments>
 	<mappers>

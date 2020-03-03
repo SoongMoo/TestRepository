@@ -3,11 +3,20 @@
 	"-//mybatis.org//DTD Config 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+		<setting value="false" name="cacheEnabled"/>
+		<setting value="true" name="useGeneratedKeys"/>
+		<setting value="true" name="mapUnderscoreToCamelCase"/>
+		<setting value="PARTIAL" name="autoMappingBehavior"/>
+	</settings>
 	<typeAliases >
 		<typeAlias type="Model.DTO.BoardDTO" alias = "bdto" />
 		<typeAlias type="Model.DTO.MemberDTO" alias = "memdto" />
 		<typeAlias type="Model.DTO.StartEndPageDTO" alias="startEnd"/>
 		<typeAlias type="Model.DTO.UserPwChangeDTO" alias="reNewPw"/>
+		<typeAlias type="Model.DTO.CommentDTO" alias="comment"/>
+		<typeAlias type="Model.DTO.ReplyDTO" alias="reply"/>
+		<typeAlias type="Model.DTO.ReplyUserDTO" alias="replyUser"/>
 	</typeAliases>
 </configuration>
 

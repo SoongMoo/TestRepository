@@ -16,6 +16,8 @@ public class MemberDTO implements Serializable{
 	String userPh2;
 	Timestamp userRegist;
 	
+	CommentDTO commentDTO;
+	
 	public MemberDTO() {}
 	
 	public MemberDTO(String userId, String userPw, String userName, Timestamp userBirth, String userGender,
@@ -31,6 +33,17 @@ public class MemberDTO implements Serializable{
 		this.userPh2 = userPh2;
 		this.userRegist = userRegist;
 	}
+	
+	
+	
+	public CommentDTO getCommentDTO() {
+		return commentDTO;
+	}
+
+	public void setCommentDTO(CommentDTO commentDTO) {
+		this.commentDTO = commentDTO;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

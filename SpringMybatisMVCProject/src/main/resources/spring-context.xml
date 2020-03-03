@@ -12,6 +12,12 @@
 	    "
 >
 	<context:annotation-config />
+	<!-- @Service, @Repository애노테이션을 붙혀진 클래스를 빈으로 등록 -->
+	<context:component-scan base-package="ldg.mybatis">
+	<context:exclude-filter type="annotation" 
+	            expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	<mvc:view-resolvers>
@@ -19,6 +25,9 @@
 	</mvc:view-resolvers>
 	<mvc:resources location="/WEB-INF/view/" mapping="/**" 
 	cache-period="14400"/>
+
+	<mvc:view-controller path="/comment/commentBoard" 
+		view-name="comment/commentForm"/>
 
 	<mvc:interceptors>
 		<mvc:interceptor>

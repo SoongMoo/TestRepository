@@ -30,8 +30,7 @@ public class PwModifyProService {
 					member.getUserPw(),
 					bcryptPasswordEncoder.encode(
 							changePwdCommand.getNewPw()));
-			memberDMLRepository.changePw(dto);
-			
+			memberDMLRepository.changePw(dto);	
 			return "redirect:/member/list";
 		}else {
 			errors.rejectValue("pw", "notCurrent");

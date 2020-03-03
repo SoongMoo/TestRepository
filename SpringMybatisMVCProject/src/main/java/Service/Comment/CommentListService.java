@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import Model.DTO.MemberDTO;
+import Model.DTO.CommentDTO;
 import Repository.Comment.CommentListRepository;
-
 @Service
 public class CommentListService {
 	@Autowired
 	CommentListRepository commentListRepository;
 	public void execute(Model model) {
-		List<MemberDTO> lists = commentListRepository.commentList();
-		model.addAttribute("commentUsers", lists);
+		List<CommentDTO> lists = commentListRepository.commentList();
+		model.addAttribute("comments", lists);
 	}
+	
 }

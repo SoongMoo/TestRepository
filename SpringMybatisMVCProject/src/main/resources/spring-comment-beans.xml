@@ -12,8 +12,10 @@
 					class="Repository.Comment.CommentListRepository"/>
 	<bean id="commentInsertService" 
 					class="Service.Comment.CommentInsertService"/>
+	<bean id="commentUserService" 
+					class="Service.Comment.CommentUserService"/>
 	<bean id="commentListService" 
-					class="Service.Comment.CommentListService"/>				
-					
-					
+					class="Service.Comment.CommentListService"/>								
 </beans>
+
+

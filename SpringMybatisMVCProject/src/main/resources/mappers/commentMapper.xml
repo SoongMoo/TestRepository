@@ -12,4 +12,12 @@
 	values(num_seq.nextval,#{cuserId},#{commentSubject},
 	#{commentContent},sysdate)
 </insert>
+<insert id="insertReply" parameterType="reply">
+	insert into reply(reply_no,ruser_id, comment_no, cuser_id,
+	reply_content, reg_Date )
+	values(num_seq.nextval, #{ruserId}, #{commentNo}, #{cuserId}, 
+	#{replyContent}, sysdate)
+</insert>
+
+
 </mapper>

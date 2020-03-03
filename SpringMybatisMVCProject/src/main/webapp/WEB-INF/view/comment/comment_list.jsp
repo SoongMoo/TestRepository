@@ -31,7 +31,7 @@
 			<div align="center">날짜</div>
 		</td>
 	</tr>
-	<c:forEach items="${commentUsers }" var="commentUser" varStatus="status">
+	<c:forEach items="${comments }" var="comment" varStatus="status">
 	<tr align="center" valign="middle" bordercolor="#333333"
 		onmouseover="this.style.backgroundColor='F8F8F8'"
 		onmouseout="this.style.backgroundColor=''">
@@ -40,17 +40,17 @@
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="left"> 
-			<a href="boardDetail?num=${commentUser.commentDTO.commentNo }" >
-				${commentUser.commentDTO.commentSubject }
+			<a href="commentDetail?num=${comment.commentNo }" >
+				${comment.commentSubject }
 			</a>
 			</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
-			<div align="center">${commentUser.userName }</div>
+			<div align="center">${comment.cuserId }</div>
 		</td>
 		<td style="font-family:Tahoma;font-size:10pt;">
 			<div align="center">
-			<fmt:formatDate value="${commentUser.commentDTO.regDate }" type="Date" 
+			<fmt:formatDate value="${comment.regDate }" type="Date" 
 			pattern="yyyy년 MM월 dd일"/> </div>
 		</td>	
 	</tr>

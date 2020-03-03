@@ -30,7 +30,6 @@
 	</association>
 </resultMap>
 
-
 <resultMap type="memdto" id="baseMember">
 	<id column="user_id" jdbcType="VARCHAR" property="userId"/>
 	<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
@@ -57,10 +56,44 @@
 	<association property="memberDTO" column="user_id" javaType="memdto" 
 	resultMap="baseMember" />
 </resultMap>
-<select id="commentAssociation" resultMap="associationResultMap">
+<select id="commentAssociation" resultMap="associationResultMap" parameterType="long">
 	select <include refid="baseCommentColumn" />, 
 		   <include refid="baseMemberColumn" />
 	from member m, comment1 c
-	where c.cuser_id = m.user_id
+	<where>
+		c.cuser_id = m.user_id
+		<if test="value != null">
+			and comment_no = #{commentNo}
+		</if>
+	</where>
+</select>
+<resultMap type="commentReplies" id="collectionResultMap">
+	<association property="commentDTO" javaType="comment" resultMap="commentMap" />
+	<collection property="replies" ofType="reply" resultMap="replyBaseMap" />
+</resultMap>
+<select id="commentRepliesCollection" resultMap="collectionResultMap" 
+			parameterType="long">
+	select 
+		c.COMMENT_NO,c.CUSER_ID,COMMENT_SUBJECT,COMMENT_CONTENT,c.REG_DATE CREG_DATE,
+	    reply_no, ruser_id, reply_content, r.reg_Date RREG_DATE
+	from comment1 c left outer join reply r
+	on	c.comment_no = r.comment_no
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			and c.comment_no = #{commentNo}
+		</if>
+	</trim>
+</select>
+
+<resultMap type="comment" id="commentMap">
+	<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+	<id column="cuser_id" jdbcType="VARCHAR" property="cuserId"/>
+	<result column="reg_date" jdbcType="TIMESTAMP" property="regDate"/>
+	<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject"/>
+	<result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>
+</resultMap>
+<select id="commentList" resultMap="commentMap">
+	select comment_no, cuser_id, reg_date, comment_subject, comment_content
+	from comment1
 </select>
 </mapper>

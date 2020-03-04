@@ -36,7 +36,7 @@ $(function(){
 </select>
 <div id="bDTO">
 <h2>Second Domino</h2>
-		<select id="bsel" name="bNum">
+		<select  >
 			<option value="">--------선택하세요--------</option>
 		</select>
 		<div id = "cDTO"></div>
@@ -50,3 +50,4 @@ $(function(){
 </div>
 </body>
 </html>
+

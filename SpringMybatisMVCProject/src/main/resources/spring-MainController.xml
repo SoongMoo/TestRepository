@@ -5,4 +5,8 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
 	<bean class="Controller.Main.MainController"/>
+	<bean class="Controller.Ajax.AjaxController"/>
+	<bean class="Controller.Domino.DominoController"/>
+	<bean id="dominoService" class="Service.Domino.DominoService"/>
+	<bean id="dominoRepository" class="Repository.Domino.DominoRepository"/>
 </beans>

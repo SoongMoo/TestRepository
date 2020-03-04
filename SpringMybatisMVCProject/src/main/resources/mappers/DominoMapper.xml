@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DominoMapper">
+<cache />
+	<resultMap type="Model.DTO.ADTO" id="aresult">
+		<id column="a1" jdbcType="BIGINT" property="a1" />
+		<result column="a2" jdbcType="BIGINT" property="a2"/>
+	</resultMap>
+	<select id="selectA" resultMap="aresult">
+		select a1,a2 from aa
+	</select>
+	<resultMap type="Model.DTO.BDTO" id="bresult">
+		<id column="a1" jdbcType="BIGINT" property="a1" />
+		<id column="b1" jdbcType="BIGINT" property="b1" />
+		<result column="b2" jdbcType="BIGINT" property="b2"/>
+	</resultMap>
+	<select id="selectB" resultMap="bresult" parameterType="int">
+		select a1,b1,b2 from bb where a1 = #{a1}
+	</select>
+	
+	<select id="selectC" resultMap="cresult" parameterType="Model.DTO.BDTO">
+		select a1,b1,c1,c2 from cc where a1 = #{a1} and b1 = #{b1}
+	</select>
+	<resultMap type="Model.DTO.CDTO" id="cresult">
+		<id column="a1" jdbcType="BIGINT" property="a1" />
+		<id column="b1" jdbcType="BIGINT" property="b1" />
+		<id column="c1" jdbcType="BIGINT" property="c1" />
+		<result column="c2" jdbcType="BIGINT" property="c2"/>
+	</resultMap>
+</mapper>
+
+
+
+

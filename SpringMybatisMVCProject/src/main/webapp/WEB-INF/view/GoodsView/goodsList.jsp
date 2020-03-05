@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div><a href="goodsCartList.gd" >장바구니 가기</a></div>
+<div><a href="goodsCartList" >장바구니 가기</a></div>
 <table width=80% border="1" cellpadding="0" cellspacing="0" >
 	<tr align="center" valign="middle">
 		<td colspan="3">상품리스트</td>
@@ -20,8 +20,15 @@
 	<c:forEach var="goods" items="${goodsList }" varStatus="status">
 	<tr>
 		<td>${status.count }</td>
-		<td><img src="GoodsView/update/${goods.goodsImage }"/></td>
-		<td><a href="goodsDetail.gd?num=${goods.goodsSeq }">
+		<td>
+		<c:forTokens items="${goods.goodsImage }" delims="-" var="goodsImage" 
+															varStatus="status">
+			<c:if test="${status.count == 1}">
+			<img src="../GoodsView/update/${goodsImage }"/>
+			</c:if>
+		</c:forTokens>
+		</td>
+		<td><a href="goodsDetail?num=${goods.goodsSeq }">
 				${goods.goodsName  }</a></td>
 		<td>${goods.goodsPrice  }</td>
 	</tr>
@@ -34,22 +41,22 @@
 		[이전]&nbsp;
 		</c:if>
 		<c:if test="${page > 1 }">
-		<a href="goodsList.gd?page=${page -1 }">[이전]</a>
+		<a href="goodsList?page=${page -1 }">[이전]</a>
 		</c:if>
 	
 		<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">	
-			<a href="goodsList.gd?page=${i }">[${i }]</a>
+			<a href="goodsList?page=${i }">[${i }]</a>
 		</c:forEach>
 		
 		<c:if test="${page >= maxPage }">
 		[이후]&nbsp;
 		</c:if>
 		<c:if test="${page < maxPage }">
-		<a href="goodsList.gd?page=${page +1 }">[이후]</a>
+		<a href="goodsList?page=${page +1 }">[이후]</a>
 		</c:if>
 	</td>
 </tr>
 </table>
-<div><a href="goodsWriter.gd" >상품등록</a></div>
+<div><a href="goodsWriter" >상품등록</a></div>
 </body>
 </html>

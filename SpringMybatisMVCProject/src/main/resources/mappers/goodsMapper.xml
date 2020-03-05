@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goodsMapper">
+<cache />
+<sql id="baseGoodsColumn">
+	GOODS_SEQ,GOODS_NUM,USER_ID,GOODS_NAME,GOODS_PRICE, GOODS_QTY,
+	GOODS_CONTENT, GOODS_IMAGE, GOODS_REGISTER, GOODS_VISIT
+</sql>
+<insert id="goodsInsert" parameterType="goods" >
+	insert into goods ( <include refid="baseGoodsColumn" /> )
+	values(num_seq.nextval, #{goodsNum}, #{userId}, #{goodsName}, 
+	#{goodsPrice}, #{goodsQty}, #{goodsContent}, #{goodsImage},sysdate,0)
+</insert>
+<resultMap type="goods" id="goodsBaseMap">
+	<id column="GOODS_SEQ" jdbcType="BIGINT" property="goodsSeq"/>
+	<result column="GOODS_NUM" jdbcType="VARCHAR" property="goodsNum" />
+	<result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+	<result column="GOODS_PRICE" jdbcType="BIGINT" property="goodsPrice" />
+	<result column="GOODS_QTY" jdbcType="BIGINT" property="goodsQty" />
+	<result column="GOODS_CONTENT" jdbcType="VARCHAR" property="goodsContent" />
+	<result column="GOODS_IMAGE" jdbcType="VARCHAR" property="goodsImage" />
+	<result column="GOODS_REGISTER" jdbcType="TIMESTAMP" property="goodsRegister" />
+	<result column="GOODS_VISIT" jdbcType="BIGINT" property="goodsVisit" />
+</resultMap>
+<select id="goodsList" resultMap="goodsBaseMap" parameterType="long">
+	select <include refid="baseGoodsColumn" /> from goods
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			GOODS_SEQ = #{goodsSeq}  
+		</if>
+	</trim>
+</select>
+
+<insert id="goodsWish" parameterType="goods">
+	MERGE INTO wish w1
+		using goods w2
+		on ( w1.GOODS_SEQ = w2.GOODS_SEQ	and w1.GOODS_SEQ = #{goodsSeq} 
+			and w1.USER_ID = #{userId})
+	when MATCHED THEN
+		update set w1.GOODS_NAME = #{goodsName}
+		delete where (w1.GOODS_SEQ = #{goodsSeq} and w1.USER_ID = #{userId})
+	WHEN NOT MATCHED THEN
+		insert ( w1.GOODS_SEQ, w1.GOODS_NUM, w1.USER_ID, w1.GOODS_NAME,
+		         w1.GOODS_PRICE, w1.GOODS_IMAGE)
+		values(#{goodsSeq},#{goodsNum},#{userId},#{goodsName},
+			   #{goodsPrice},#{goodsImage})
+</insert> 
+<select id="goodsWishCount" parameterType="long" resultType="int">
+	select count(*) from wish where GOODS_SEQ  = #{goodsSeq}
+</select>
+
+</mapper>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="goodsPro.gd" method="post" enctype="multipart/form-data" >
+<form action="goodsPro" method="post" enctype="multipart/form-data" >
 	<table border="1">
 		<tr><td>상품번호</td>
 			<td><input type="text" name="goodsNum" id="goodsNum" />
@@ -31,7 +31,7 @@
 			</td>
 		</tr>
 		<tr><td>상품 이미지</td>
-			<td><input type="file" name="goodsImage" id="goodsImage" >
+			<td><input type="file" name="goodsImage" id="goodsImage" multiple="multiple">
 			</td>
 		</tr>
 		<tr>

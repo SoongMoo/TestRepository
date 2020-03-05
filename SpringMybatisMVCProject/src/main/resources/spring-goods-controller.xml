@@ -5,4 +5,8 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
 	<bean class = "Controller.Goods.GoodsController"/>
+	<bean class = "Controller.Goods.GoodsWriterController"/>
+	<bean class = "Controller.Goods.GoodsDetailController"/>
+	<bean class = "Controller.Goods.GoodsCartController"/>
+	<bean class = "Controller.Goods.GoodsWishController"/>
 </beans>

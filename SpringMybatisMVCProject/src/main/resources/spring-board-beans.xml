@@ -5,10 +5,8 @@
 	    http://www.springframework.org/schema/beans/spring-beans.xsd
 	    "
 >
-	 
 	 <bean id="boardWriteService" class="Service.Board.BoardWriteService" />
 	 <bean id="boardWriteRepository" class="Repository.Board.BoardWriteRepository" />
 	 <bean id="boardListService" class="Service.Board.BoardListService" />
 	 <bean id="boardDetailService" class="Service.Board.BoardDetailService" />
-	 
  </beans>

@@ -21,7 +21,7 @@ public class BoardController {
 	@Autowired
 	BoardListService boardListService;
 	
-	@RequestMapping(value="/board/boardList" ,method = RequestMethod.GET)
+	@RequestMapping(value="/board/boardlist" ,method = RequestMethod.GET)
 	public String list(Model model) {
 		System.out.println("ccc");
 		boardListService.boardAllSelect(model);

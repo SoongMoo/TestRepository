@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div><a href="goodsCartList" >장바구니 가기</a></div>
+<div><a href="goodsCartList" >장바구니 가기</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="goodsWishList" >관심상품 가기</a></div>
 <table width=80% border="1" cellpadding="0" cellspacing="0" >
 	<tr align="center" valign="middle">
 		<td colspan="3">상품리스트</td>

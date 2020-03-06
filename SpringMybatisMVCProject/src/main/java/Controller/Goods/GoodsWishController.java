@@ -20,4 +20,9 @@ public class GoodsWishController {
 		goodsWishService.goodsWishAdd(goodsSeq, model, session);
 		return "GoodsView/success";
 	}
+	@RequestMapping("/goods/goodsWishList")
+	public String goodsWishList(Model model,HttpSession session) {
+		goodsWishService.goodsWishList(model,session);
+		return "GoodsView/goodsWishList";
+	}
 }

@@ -33,10 +33,16 @@ function checkQty(num, qty){
 	<c:forEach var="cart" items="${cartList }" step="1" >
 	<tr align="center" bgcolor="orange">
 		<td>${cart.goodsSeq }	</td>
-		<td><img src = "GoodsView/update/${cart.goodsImage }" width="30"/></td>
+		<td>
+			<c:forTokens items="${cart.goodsImage }" delims="-" var="goodsImage" varStatus="ii">
+			<c:if test="${ii.index == 0}">
+			<img src = "../GoodsView/update/${goodsImage }" width="30"/>
+			</c:if>
+			</c:forTokens>
+		</td>
 		<td>${cart.goodsName }</td>
 		<td>${cart.goodsPrice }</td>
-		<td><a href="goodsCartQtyUp.gd?goodsNum=${cart.goodsSeq }"> + </a> 
+		<td><a href="goodsCartQtyUp?goodsNum=${cart.goodsSeq }"> + </a> 
 		 ${cart.qty } 
 		<a href="javascript:checkQty('${cart.goodsSeq }',${cart.qty })"> - </a></td>
 		<td align="center">

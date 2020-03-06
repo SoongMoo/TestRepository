@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class CartDTO implements Serializable{
-	Integer goodsSeq;
+	Long goodsSeq;
 	String userId   ;
 	String goodsName;
-	Integer goodsPrice;
+	Long goodsPrice;
 	String goodsImage ;
-	Integer qty;
-	public Integer getGoodsSeq() {
+	Long qty;
+	public Long getGoodsSeq() {
 		return goodsSeq;
 	}
-	public void setGoodsSeq(Integer goodsSeq) {
+	public void setGoodsSeq(Long goodsSeq) {
 		this.goodsSeq = goodsSeq;
 	}
 	public String getUserId() {
@@ -28,10 +28,10 @@ public class CartDTO implements Serializable{
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
 	}
-	public Integer getGoodsPrice() {
+	public Long getGoodsPrice() {
 		return goodsPrice;
 	}
-	public void setGoodsPrice(Integer goodsPrice) {
+	public void setGoodsPrice(Long goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
 	public String getGoodsImage() {
@@ -40,10 +40,10 @@ public class CartDTO implements Serializable{
 	public void setGoodsImage(String goodsImage) {
 		this.goodsImage = goodsImage;
 	}
-	public Integer getQty() {
+	public Long getQty() {
 		return qty;
 	}
-	public void setQty(Integer qty) {
+	public void setQty(Long qty) {
 		this.qty = qty;
 	}
 }

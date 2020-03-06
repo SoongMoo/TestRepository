@@ -32,23 +32,54 @@
 		</if>
 	</trim>
 </select>
-
-<insert id="goodsWish" parameterType="goods">
-	MERGE INTO wish w1
-		using goods w2
-		on ( w1.GOODS_SEQ = w2.GOODS_SEQ	and w1.GOODS_SEQ = #{goodsSeq} 
-			and w1.USER_ID = #{userId})
-	when MATCHED THEN
-		update set w1.GOODS_NAME = #{goodsName}
-		delete where (w1.GOODS_SEQ = #{goodsSeq} and w1.USER_ID = #{userId})
-	WHEN NOT MATCHED THEN
-		insert ( w1.GOODS_SEQ, w1.GOODS_NUM, w1.USER_ID, w1.GOODS_NAME,
-		         w1.GOODS_PRICE, w1.GOODS_IMAGE)
-		values(#{goodsSeq},#{goodsNum},#{userId},#{goodsName},
-			   #{goodsPrice},#{goodsImage})
-</insert> 
-<select id="goodsWishCount" parameterType="long" resultType="int">
-	select count(*) from wish where GOODS_SEQ  = #{goodsSeq}
+<select id="goodsWishList" parameterType="string" resultMap="goodsBaseMap">
+	select <include refid="baseGoodsColumn" /> from goods
+	where GOODS_SEQ IN (select GOODS_SEQ from wish where user_id = #{userId})
 </select>
+<delete id="wishDelete" parameterType="wish">
+	delete from wish where GOODS_SEQ = #{goodsSeq} and user_id = #{userId}
+</delete>
+<insert id="wishInsert" parameterType="wish">
+	insert into wish(GOODS_SEQ, user_id)
+	values(#{goodsSeq},#{userId})
+</insert>
+<select id="goodsWishCount" parameterType="wish" resultType="int">
+	select count(*) from wish 
+	where GOODS_SEQ  = #{goodsSeq} and USER_ID  =#{userId} 
+</select>
+<insert id="cartInsert" parameterType="cart">
+	MERGE into cart c1
+	USING (select goods_seq from goods  where goods_seq = #{goodsSeq} ) g1
+	ON (c1.GOODS_SEQ = g1.GOODS_SEQ and c1.user_id = #{userId} )
+	When MATCHED THEN
+		update set c1.qty = c1.qty + 1
+	When NOT MATCHED THEN
+		insert (c1.goods_seq, c1.user_id, c1.goods_name,  c1.goods_price, 
+				c1.goods_image, c1.qty)
+		values(g1.goods_seq,#{userId},#{goodsName},#{goodsPrice},
+		        #{goodsImage},#{qty})
+</insert>
 
+<resultMap type="cart" id="cartListMap">
+	<id column="goods_seq" jdbcType="BIGINT" property="goodsSeq"/>
+	<id column="user_id" jdbcType="VARCHAR" property="userId"/>
+	<result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+	<result column="goods_price" jdbcType="BIGINT" property="goodsPrice"/>
+	<result column="goods_image" jdbcType="VARCHAR" property="goodsImage"/>
+	<result column="qty" jdbcType="BIGINT" property="qty"/>
+</resultMap>
+<select id="cartList" parameterType="string" resultMap="cartListMap">
+	select goods_seq, user_id, goods_name, goods_price, goods_image, qty
+	from cart 
+	where user_id = #{userId}
+</select>
 </mapper>
+
+
+
+
+
+
+
+
+

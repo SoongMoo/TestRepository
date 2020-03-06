@@ -14,6 +14,12 @@ import Service.Goods.GoodsCartService;
 public class GoodsCartController {
 	@Autowired
 	GoodsCartService goodsCartService;
+	
+	@RequestMapping("/goods/goodsCartRemove")
+	public String goodsCartRemove(@RequestParam(value = "delete") Long [] goodsSeqs) {
+		goodsCartService.goodsCartRemove(goodsSeqs);
+		return "redirect:/goods/goodsCartList";
+	}
 	@RequestMapping("/goods/goodsCartAdd")
 	public String goodsCartAdd(
 			@RequestParam(value = "num") Long goodsSeq, Model model,
@@ -25,6 +31,20 @@ public class GoodsCartController {
 	public String goodsCartList(Model model, HttpSession session) {
 		goodsCartService.goodsCartList(session, model);
 		return "GoodsView/goodsCartList";
+	}
+	@RequestMapping(value = "/goods/goodsCartQtyDown")
+	public String goodsCartQtyDown(@RequestParam(value = "goodsNum") Long goodsSeq, 
+			Model model,HttpSession session) {
+		goodsCartService.goodsCartQtyDown(goodsSeq,model,session);
+		return "redirect:/goods/goodsCartList";
+	}
+	@RequestMapping(value = "/goods/goodsCartQtyUp")
+	public String goodsCartQtyUp(@RequestParam(value = "goodsNum") 
+											Long goodsSeq, Model model,
+			HttpSession session) {
+		System.out.println("aaaaa");
+		goodsCartService.goodsCartAdd(goodsSeq,model,session);
+		return "redirect:/goods/goodsCartList";
 	}
 }
 

@@ -54,25 +54,45 @@
 	When MATCHED THEN
 		update set c1.qty = c1.qty + 1
 	When NOT MATCHED THEN
-		insert (c1.goods_seq, c1.user_id, c1.goods_name,  c1.goods_price, 
+		insert (c1.cart_num , c1.goods_seq, c1.user_id, c1.goods_name,  c1.goods_price, 
 				c1.goods_image, c1.qty)
-		values(g1.goods_seq,#{userId},#{goodsName},#{goodsPrice},
+		values(num_seq.nextval, g1.goods_seq,#{userId},#{goodsName},#{goodsPrice},
 		        #{goodsImage},#{qty})
 </insert>
 
 <resultMap type="cart" id="cartListMap">
-	<id column="goods_seq" jdbcType="BIGINT" property="goodsSeq"/>
-	<id column="user_id" jdbcType="VARCHAR" property="userId"/>
+	<id column="cart_num" jdbcType="BIGINT" property="cartNum"/>
+	<result column="goods_seq" jdbcType="BIGINT" property="goodsSeq"/>
+	<result column="user_id" jdbcType="VARCHAR" property="userId"/>
 	<result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
 	<result column="goods_price" jdbcType="BIGINT" property="goodsPrice"/>
 	<result column="goods_image" jdbcType="VARCHAR" property="goodsImage"/>
 	<result column="qty" jdbcType="BIGINT" property="qty"/>
 </resultMap>
 <select id="cartList" parameterType="string" resultMap="cartListMap">
-	select goods_seq, user_id, goods_name, goods_price, goods_image, qty
+	select cart_num, goods_seq, user_id, goods_name, goods_price, goods_image, qty
 	from cart 
 	where user_id = #{userId}
 </select>
+
+<update id="cartDown" parameterType="cart">
+	update cart
+	set qty = qty - 1
+	where goods_seq = #{goodsSeq} and user_id = #{userId}
+</update>
+
+<delete id="CartRemove" parameterType="hashmap">
+	delete from cart
+	<where>
+		<if test="seqs != null">
+			cart_num IN 
+			<foreach collection="seqs" item="goodsSeq" index="index" 
+					open="(" close=")" separator=",">
+					#{goodsSeq }
+			</foreach>
+		</if>
+	</where>
+</delete>
 </mapper>
 
 

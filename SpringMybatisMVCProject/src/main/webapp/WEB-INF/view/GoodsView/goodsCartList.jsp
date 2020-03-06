@@ -10,7 +10,7 @@
 <script type="text/javascript">
 function checkQty(num, qty){
 	if(qty > 1){
-		location.href="goodsCartQtyDown.gd?goodsNum="+num;
+		location.href="goodsCartQtyDown?goodsNum="+num;
 	}else{
 		return false;
 	}
@@ -18,7 +18,7 @@ function checkQty(num, qty){
 </script>
 </head>
 <body>
-<form action="goodsCartRemove.gd" method="post" name="frm">
+<form action="goodsCartRemove" method="post" name="frm">
 <table align="center" width="600" border="1">
 	<tr align="center" bgcolor="orange">
 		<td>번호	</td>
@@ -46,7 +46,7 @@ function checkQty(num, qty){
 		 ${cart.qty } 
 		<a href="javascript:checkQty('${cart.goodsSeq }',${cart.qty })"> - </a></td>
 		<td align="center">
-		<input type="checkbox" name="delete" value="${cart.goodsSeq }" />
+		<input type="checkbox" name="delete" value="${cart.cartNum }" />
 		</td>
 	</tr>	
 	</c:forEach>

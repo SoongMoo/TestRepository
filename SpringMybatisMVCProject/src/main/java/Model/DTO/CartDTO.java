@@ -4,12 +4,21 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class CartDTO implements Serializable{
+	Long cartNum;
 	Long goodsSeq;
 	String userId   ;
 	String goodsName;
 	Long goodsPrice;
 	String goodsImage ;
 	Long qty;
+	
+	public Long getCartNum() {
+		return cartNum;
+	}
+	public void setCartNum(Long cartNum) {
+		this.cartNum = cartNum;
+	}
+	
 	public Long getGoodsSeq() {
 		return goodsSeq;
 	}

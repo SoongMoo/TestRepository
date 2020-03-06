@@ -1,6 +1,9 @@
 package Service.Goods;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +18,27 @@ import Repository.Goods.GoodsRepository;
 public class GoodsCartService {
 	@Autowired
 	GoodsRepository goodsRepository;
+	
+	public void goodsCartRemove(Long [] goodsSeqs) {
+		List<Long> cs  = new ArrayList<Long>();
+		
+		for(Long goodsSeq : goodsSeqs) { // 11,2,55
+			cs.add(goodsSeq);
+		}
+
+		Map<String, Object> condition = new HashMap<String, Object>(); 
+		condition.put("seqs", cs);
+		
+		goodsRepository.goodsCartRemove(condition);
+	}
+	
+	public void goodsCartQtyDown(Long goodsSeq,Model model,HttpSession session) {
+		CartDTO cart = new CartDTO();
+		cart.setGoodsSeq(goodsSeq);
+		cart.setUserId(((AuthInfo)session.getAttribute("authInfo")).getId());
+		goodsRepository.goodsCartQtyDown(cart);
+	}
+	
 	public void goodsCartAdd(Long goodsSeq, Model model,
 			HttpSession session) {
 		GoodsDTO dto = goodsRepository.goodsDetail(goodsSeq);

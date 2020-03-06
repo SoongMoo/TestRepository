@@ -21,6 +21,8 @@
 		<typeAlias type="Model.DTO.GoodsDTO" alias="goods"/>
 		<typeAlias type="Model.DTO.WishDTO" alias="wish"/>
 		<typeAlias type="Model.DTO.CartDTO" alias="cart"/>
+		<typeAlias type="Model.DTO.CartRemove" alias="cartRemove"/>
+		
 	</typeAliases>
 </configuration>
 

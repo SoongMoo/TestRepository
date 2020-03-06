@@ -1,11 +1,13 @@
 package Repository.Goods;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Model.DTO.CartDTO;
+import Model.DTO.CartRemove;
 import Model.DTO.GoodsDTO;
 import Model.DTO.WishDTO;
 
@@ -13,6 +15,16 @@ public class GoodsRepository {
 	@Autowired
 	SqlSession sqlSession;
 	private final String namespace = "goodsMapper";
+	
+	public void goodsCartRemove(Map<String, Object> condition) {
+		String statement = namespace + ".CartRemove";
+		sqlSession.delete(statement, condition);
+	}
+	
+	public void goodsCartQtyDown(CartDTO cart) {
+		String statement = namespace + ".cartDown";
+		sqlSession.update(statement, cart);
+	}
 	public Integer goodsCartAdd(CartDTO dto) {
 		String statement = namespace + ".cartInsert";
 		try {

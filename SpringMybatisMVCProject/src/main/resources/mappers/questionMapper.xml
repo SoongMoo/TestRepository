@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Mapper.Question">
+<cache />
+<resultMap type="questions" id="surveyMap">
+	<id column="Question_title" jdbcType="VARCHAR" property="question" />
+	<result column="options_name" jdbcType="VARCHAR" property="option"/>
+</resultMap>
+<select id="surveySelectAll" resultMap="surveyMap">
+	select q.Question_num, Question_title, options_num, options_name
+	from Question q, options o
+	where q.Question_num = o.Question_num(+)
+</select>
+</mapper>

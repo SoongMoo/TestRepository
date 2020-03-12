@@ -132,12 +132,7 @@
 	    <artifactId>spring-security-config</artifactId>
 	    <version>${org.springframework-version}</version>
 	</dependency>
-	<!-- json의존성 설정 --> 
-	<dependency>
-		<groupId>com.fasterxml.jackson.core</groupId> 
-		<artifactId>jackson-databind</artifactId> 
-		<version>${jackson.version}</version>
-	</dependency>
+
   </dependencies>
   <build>
     <finalName>SpringMybatisMVCProject</finalName>

@@ -9,4 +9,11 @@
 	<bean class="Controller.Domino.DominoController"/>
 	<bean id="dominoService" class="Service.Domino.DominoService"/>
 	<bean id="dominoRepository" class="Repository.Domino.DominoRepository"/>
+	<bean class="Controller.Survey.SurveyController"/>
+	<bean id="surveyService" class="Service.Survey.SurveyService"/>
+	<bean id="surveyRepository" class="Repository.Survey.SurveyRepository"/>
+	
+	
+	
+	
 </beans>

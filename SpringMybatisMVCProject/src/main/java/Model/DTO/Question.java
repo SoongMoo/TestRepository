@@ -28,4 +28,7 @@ public class Question {
 	public void setOptions(List<String> options) {
 		this.options = options;
 	}
+	public boolean isChoice() {
+		return options != null && !options.isEmpty();
+	}
 }

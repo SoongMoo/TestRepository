@@ -11,6 +11,7 @@
   <properties>
   	<org.springframework-version>4.1.0.RELEASE</org.springframework-version>
   	<java-version>1.8</java-version>
+  	<jackson.version>2.5.4</jackson.version>
   </properties>
   
   <!--  repositories -->
@@ -130,6 +131,12 @@
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-config</artifactId>
 	    <version>${org.springframework-version}</version>
+	</dependency>
+	<!-- json의존성 설정 --> 
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId> 
+		<artifactId>jackson-databind</artifactId> 
+		<version>${jackson.version}</version>
 	</dependency>
   </dependencies>
   <build>

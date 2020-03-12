@@ -51,7 +51,7 @@
 <a href ="comment/comment_list">댓글 게시판</a>
 <a href ="goods/goodsList">상품목록</a> <!-- Ajax : JSON -->
 <a href="mailForm">메일전송</a>
-<a href = "survey" >설문지</a>
+<a href = "survey/survey" >설문지</a>
 <a href = "ajaxTest" >ajaxTest</a>
 <a href = "AjaxTest1" >ajaxTest1</a>
 <a href = "domino" >domino</a>

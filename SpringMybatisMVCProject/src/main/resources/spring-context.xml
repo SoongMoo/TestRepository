@@ -59,4 +59,7 @@ class = "org.springframework.context.support.ResourceBundleMessageSource">
     	class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
     	<constructor-arg value="10" />
     </bean>
+     
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+	<bean id="jsonReport" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
 </beans>

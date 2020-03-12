@@ -31,7 +31,7 @@
 			user_pw = #{userPw}
 			</if>
 			<if test="userId != null">
-			and user_id = #{userId}
+			and user_id = #{userId} and join_ok is not null
 			</if>
 		</trim>
 	</select>

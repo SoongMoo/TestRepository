@@ -15,7 +15,8 @@ public class MemberDTO implements Serializable{
 	String userPh1;
 	String userPh2;
 	Timestamp userRegist;
-	
+	String joinOk;
+
 	CommentDTO commentDTO;
 	
 	public MemberDTO() {}
@@ -34,8 +35,14 @@ public class MemberDTO implements Serializable{
 		this.userRegist = userRegist;
 	}
 	
-	
-	
+	public String getJoinOk() {
+		return joinOk;
+	}
+
+	public void setJoinOk(String joinOk) {
+		this.joinOk = joinOk;
+	}
+
 	public CommentDTO getCommentDTO() {
 		return commentDTO;
 	}

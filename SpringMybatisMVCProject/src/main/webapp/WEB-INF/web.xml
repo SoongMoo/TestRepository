@@ -27,6 +27,7 @@
   			classpath:spring-comment-beans.xml
   			classpath:spring-goods-controller.xml
   			classpath:spring-goods-beans.xml
+  			classpath:spring-mail-config.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

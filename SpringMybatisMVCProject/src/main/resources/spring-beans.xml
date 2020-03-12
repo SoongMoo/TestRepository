@@ -29,7 +29,12 @@
 		class = "Service.Member.PwModifyService"/>	
 	<bean id = "pwModifyProService"  
 		class = "Service.Member.PwModifyProService"/>	
+	<bean id = "memberRegMailService"  
+		class = "Service.Member.MemberRegMailService"/>	
+	<bean id = "emailAllService"  
+		class = "Service.Member.EmailAllService"/>	
 		
+			
 	
 		
 	

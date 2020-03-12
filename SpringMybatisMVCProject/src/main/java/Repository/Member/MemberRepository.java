@@ -12,6 +12,19 @@ import Model.DTO.StartEndPageDTO;
 public class MemberRepository extends AbstractRepository{
 	private final String namespace = "Mappers.memberMapper";
 	SqlSession sqlSession = getSqlSessionFactory().openSession();
+	
+	public List<String> selectMemberAll(){
+		String statement =  namespace + ".selectMemberAll";
+		return sqlSession.selectList(statement);
+	}
+	
+	public Integer joinOkUpdate(MemberDTO memberDTO) {
+		String statement = namespace + ".joinOkUpdate";
+		Integer i = sqlSession.update(statement, memberDTO);
+		sqlSession.commit();
+		sqlSession.close();
+		return i;
+	}
 	public List<MemberDTO> getMemberList(int page, int limit){
 		Long startRow = ((long)page -1 ) * 10 +1;
 		Long endRow = startRow + limit -1;

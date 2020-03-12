@@ -3,6 +3,16 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Mappers.memberMapper" >
 <cache />
+	<select id="selectMemberAll" resultType="string">
+		select user_email from member 
+	</select>
+	<update id="joinOkUpdate" parameterType="memdto">
+		update member
+		set join_ok = #{joinOk}
+		where user_id = #{userId} and USER_EMAIL = #{userEmail} 
+		and join_ok is null
+	</update>
+
 	<sql id="basecolumn">
 		USER_ID,USER_PW,USER_NAME, USER_BIRTH, USER_GENDER, 
 		USER_EMAIL,USER_ADDR,USER_PH1, USER_PH2, USER_REGIST 

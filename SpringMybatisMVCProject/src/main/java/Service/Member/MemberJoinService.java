@@ -14,6 +14,15 @@ public class MemberJoinService {
 	MemberRepository memberRepository;
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
+	@Autowired
+	MemberRegMailService memberRegMailService;
+	public Integer numUpdate(String num,String reciver,String userId) {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setJoinOk(num);
+		memberDTO.setUserEmail(reciver);
+		memberDTO.setUserId(userId);
+		return memberRepository.joinOkUpdate(memberDTO);
+	}
 	public Integer execute(MemberCommand memberCommand) {
 		Integer result = null;
 		MemberDTO memberDTO = new MemberDTO();
@@ -31,6 +40,9 @@ public class MemberJoinService {
 				bcryptPasswordEncoder.encode(memberCommand.getUserPw()));
 		System.out.println(memberDTO.getUserPw());
 		result = memberRepository.insertMember(memberDTO);
+		if(result != null) {
+			memberRegMailService.sendMail(memberDTO.getUserEmail(), memberDTO.getUserId());
+		}
 		return result;
 	}
 }

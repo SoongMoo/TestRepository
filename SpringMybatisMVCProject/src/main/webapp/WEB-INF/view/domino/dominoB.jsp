@@ -12,7 +12,7 @@
 			$.ajax({
 				type:"POST",
 				url : "cDomino",
-				data : "a1="+$("#asel").val() + "&b1=" + $("#bsel").val(),
+				data : {"a1" : $("#asel").val() ,"b1" : $("#bsel").val()},
 				datatype : "html",
 				success : function(data1){
 					$("#cDTO").html(data1);

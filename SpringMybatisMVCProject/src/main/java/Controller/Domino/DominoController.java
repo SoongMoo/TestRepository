@@ -29,7 +29,7 @@ public class DominoController {
 			@RequestParam(value = "b1") Integer b1) {
 		dominoService.execute2(model, a1,b1);
 		return "domino/dominoC";
-	}	
+	}
 }
 
 

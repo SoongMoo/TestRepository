@@ -12,7 +12,7 @@
 	<bean class="Controller.Survey.SurveyController"/>
 	<bean id="surveyService" class="Service.Survey.SurveyService"/>
 	<bean id="surveyRepository" class="Repository.Survey.SurveyRepository"/>
-	
+	<bean class="Controller.Json.JsonController"/>
 	
 	
 	

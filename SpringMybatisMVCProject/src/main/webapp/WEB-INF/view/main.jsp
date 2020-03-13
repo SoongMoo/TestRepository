@@ -55,6 +55,7 @@
 <a href = "ajaxTest" >ajaxTest</a>
 <a href = "AjaxTest1" >ajaxTest1</a>
 <a href = "domino" >domino</a>
+<a href = "jsonMian" >jsonMain</a>
 </c:if>
 </body>
 </html>

@@ -143,7 +143,6 @@
        <artifactId>jackson-mapper-asl</artifactId>
        <version>1.9.13</version>
 	</dependency>
-	
 	<dependency>  <!-- jsonView 사용 -->
 	    <groupId>net.sf.json-lib</groupId>
 	    <artifactId>json-lib-ext-spring</artifactId>

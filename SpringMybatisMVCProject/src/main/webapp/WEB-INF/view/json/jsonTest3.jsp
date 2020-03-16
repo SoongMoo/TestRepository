@@ -37,6 +37,9 @@ $("#joinOk").bind("click",function(){
                 html += '비밀번호<input type="text" class="form-control" name="password" value="'+data.userPw+'">';
                 html += '</form>';
                 $("#container").after(html);
+            },
+            error : function(request,status,error){
+            	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
 

@@ -29,6 +29,7 @@
   			classpath:spring-goods-beans.xml
   			classpath:spring-mail-config.xml
   			classpath:jsonView.xml
+  			classpath:spring-chatting.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

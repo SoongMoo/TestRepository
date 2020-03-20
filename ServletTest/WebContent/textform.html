@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+가입할 ID 와 Password 및 자기소개를 입력하세요.
+<form action="textform.jsp" method="POST" name="textform" enctype="application/x-www-form-urlencoded">
+<!-- 	ID : <input type="text" name="id"><br/>
+	Password : <input type="password" name="pw"><br/>
+	자기소개<br/>
+	<textarea name="desc" cols="50" rows="4"></textarea><br> -->
+	
+	<input type="checkbox" name="cp" value="엔터테인먼트">엔터테인먼트<br/>
+    <input type="checkbox" name="cp" value="컴퓨터/인터넷" checked>컴퓨터/인터넷<br/>
+    <input type="checkbox" name="cp" value="경제/비지니스">경제/비지니스<br/>
+    
+	<center>
+	<input type="submit" value="전송" name="submitbtn">
+	</center>
+</form>
+</body>
+</html>

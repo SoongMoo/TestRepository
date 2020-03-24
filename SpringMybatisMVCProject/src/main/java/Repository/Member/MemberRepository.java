@@ -11,50 +11,71 @@ import Model.DTO.StartEndPageDTO;
 @Repository
 public class MemberRepository extends AbstractRepository{
 	private final String namespace = "Mappers.memberMapper";
-	SqlSession sqlSession = getSqlSessionFactory().openSession();
+	public MemberRepository() {
+		super();
+	}
 	
 	public List<String> selectMemberAll(){
-		String statement =  namespace + ".selectMemberAll";
-		List<String> list = sqlSession.selectList(statement);
-		sqlSession.close();
-		return list;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement =  namespace + ".selectMemberAll";
+			List<String> list = sqlSession.selectList(statement);
+			return list;
+		}finally{
+				sqlSession.close();
+		}
 	}
 	
 	public Integer joinOkUpdate(MemberDTO memberDTO) {
-		String statement = namespace + ".joinOkUpdate";
-		Integer i = sqlSession.update(statement, memberDTO);
-		sqlSession.commit();
-		sqlSession.close();
-		return i;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".joinOkUpdate";
+			Integer i = sqlSession.update(statement, memberDTO);
+			sqlSession.commit();
+			return i;
+		}finally{
+			sqlSession.close();
+		}
 	}
 	public List<MemberDTO> getMemberList(int page, int limit){
-		Long startRow = ((long)page -1 ) * 10 +1;
-		Long endRow = startRow + limit -1;
-		String statement = namespace + ".memberList";
-		List<MemberDTO> lists = 
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			Long startRow = ((long)page -1 ) * 10 +1;
+			Long endRow = startRow + limit -1;
+			String statement = namespace + ".memberList";
+			List<MemberDTO> lists = 
 				sqlSession.selectList(statement, 
 						new StartEndPageDTO(startRow,endRow));
-		sqlSession.close();		
-		return lists;
+			return lists;
+		}finally{
+			sqlSession.close();
+		}
 	}
 	public Integer getListCount() {
-		String statement = namespace + ".memberCount";
-		Integer i = sqlSession.selectOne(statement);
-		sqlSession.close();
-		return i;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".memberCount";
+			Integer i = sqlSession.selectOne(statement);
+			return i;
+		}finally{
+			sqlSession.close();
+		}
 	}
 	public Integer insertMember(MemberDTO dto) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Integer result = null;
 		String statement = namespace + ".insertMember";
 		try {
 			result = sqlSession.insert(statement, dto) ;
-			sqlSession.commit();
+			if(result >0 )	sqlSession.commit();
+			return result;
 		}catch(Exception e) {
 			e.printStackTrace();
 			sqlSession.rollback();
+			return result;
 		}finally {
 			sqlSession.close();
 		}
-		return result;
+		
 	}
 }

@@ -5,14 +5,20 @@ import org.apache.ibatis.session.SqlSession;
 import Model.DTO.MemberDTO;
 
 public class LoginRepository extends AbstractRepository{
-	private SqlSession sqlSession = getSqlSessionFactory().openSession();
 	private final String namespace = "Mappers.loginMapper";
-	
+	public LoginRepository() {
+		super();
+	}
 	public MemberDTO selectByUserId(MemberDTO member) {
-		String statement = namespace + ".selectUser";
-		MemberDTO member1 = sqlSession.selectOne(statement, member);
-		sqlSession.close();
-		return member1;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			String statement = namespace + ".selectUser";
+			MemberDTO member1 = sqlSession.selectOne(statement, member);
+			return member1;
+		}finally{
+			sqlSession.close();
+		}
+		
 		
 	}
 }

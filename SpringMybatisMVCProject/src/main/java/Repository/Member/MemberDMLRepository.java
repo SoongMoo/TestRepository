@@ -9,6 +9,9 @@ import Model.DTO.UserPwChangeDTO;
 @Repository
 public class MemberDMLRepository extends AbstractRepository{
 	private final String namespace = "Mappers.memberDMLMapper";
+	public MemberDMLRepository() {
+		super();
+	}
 	public void changePw(UserPwChangeDTO dto) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		String statement = namespace + ".userPwChange";

@@ -8,11 +8,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class AbstractRepository {
-	private static SqlSessionFactory sqlSessionFactory;
-	static {
+	private SqlSessionFactory sqlSessionFactory;
+	public AbstractRepository() {
 		setSqlSessionFactory();
 	}
-	private static void setSqlSessionFactory() {
+	private void setSqlSessionFactory() {
 		String resource = "mybatis-config1.xml";
 		InputStream inputStream = null;
 		try {

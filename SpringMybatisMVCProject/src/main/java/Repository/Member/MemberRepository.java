@@ -15,7 +15,9 @@ public class MemberRepository extends AbstractRepository{
 	
 	public List<String> selectMemberAll(){
 		String statement =  namespace + ".selectMemberAll";
-		return sqlSession.selectList(statement);
+		List<String> list = sqlSession.selectList(statement);
+		sqlSession.close();
+		return list;
 	}
 	
 	public Integer joinOkUpdate(MemberDTO memberDTO) {
@@ -32,11 +34,14 @@ public class MemberRepository extends AbstractRepository{
 		List<MemberDTO> lists = 
 				sqlSession.selectList(statement, 
 						new StartEndPageDTO(startRow,endRow));
+		sqlSession.close();		
 		return lists;
 	}
 	public Integer getListCount() {
 		String statement = namespace + ".memberCount";
-		return sqlSession.selectOne(statement);
+		Integer i = sqlSession.selectOne(statement);
+		sqlSession.close();
+		return i;
 	}
 	public Integer insertMember(MemberDTO dto) {
 		Integer result = null;

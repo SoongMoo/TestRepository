@@ -26,16 +26,13 @@
 		<result column="ip_addr" jdbcType="VARCHAR" property="ipAddr"/>
 		<result column="read_count" jdbcType="BIGINT" property="readCount"/>
 	</resultMap>
-	
-	
-	
+
 	<select id="boardSelect" parameterType="Integer" resultMap="baseBoardMap">
 		select <include refid="basecolumn" /> from board
 		<where>
 			<if test="value!=null">
 				board_num=#{boardNum}
 			</if>
-		
 		</where>
 	</select>
 </mapper>

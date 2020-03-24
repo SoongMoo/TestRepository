@@ -10,6 +10,9 @@ public class LoginRepository extends AbstractRepository{
 	
 	public MemberDTO selectByUserId(MemberDTO member) {
 		String statement = namespace + ".selectUser";
-		return sqlSession.selectOne(statement, member);
+		MemberDTO member1 = sqlSession.selectOne(statement, member);
+		sqlSession.close();
+		return member1;
+		
 	}
 }

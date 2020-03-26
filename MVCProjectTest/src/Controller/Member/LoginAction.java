@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Contoller.Encrypt;
+import Controller.Encrypt;
 import Model.DAO.MemberDAO;
 
 public class LoginAction {
@@ -33,17 +33,17 @@ public class LoginAction {
 				Cookie cookie = new Cookie("id",userId);
 				cookie.setMaxAge(60*60*24*30);
 				response.addCookie(cookie);
-			}else {// ¾ÆÀÌÆ¼Ã¼Å©¿¡ Ã¼Å©¸¦ ¾ÈÇßÀ» ¶§
+			}else {// ï¿½ï¿½ï¿½ï¿½Æ¼Ã¼Å©ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 				Cookie cookie = new Cookie("id","");
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
 		}else if(i == 0) {
-			session.setAttribute("failPw", "ºñ¹Ð¹øÈ£°¡ Æ²·È½À´Ï´Ù.");
+			session.setAttribute("failPw", "ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ Æ²ï¿½È½ï¿½ï¿½Ï´ï¿½.");
 			session.removeAttribute("failId");
 		}else if(i == -1){
-			session.setAttribute("failId", "¾ÆÀÌµð°¡ Á¸ÀçÇÏÁö ¾Ê°Å³ª "
-					+ "¸ÞÀÏ È®ÀÎÀÌ ¾ÈµÇ¾ú½À´Ï´Ù..");
+			session.setAttribute("failId", "ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°Å³ï¿½ "
+					+ "ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½..");
 			session.removeAttribute("failPw");
 		}
 	}

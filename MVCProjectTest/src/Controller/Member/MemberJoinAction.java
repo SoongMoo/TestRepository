@@ -9,7 +9,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Contoller.Encrypt;
+import Controller.Encrypt;
 import Model.DAO.MemberDAO;
 import Model.DTO.MemberDTO;
 
@@ -25,7 +25,7 @@ public class MemberJoinAction {
 		dto.setUserId(request.getParameter("userId"));
 		dto.setUserPw(Encrypt.getEncryption(
 				request.getParameter("userPw")));
-		System.out.println("ºñ¹Ð¹øÈ£ : " + dto.getUserPw());
+		System.out.println("ï¿½ï¿½Ð¹ï¿½È£ : " + dto.getUserPw());
 		dto.setUserAddr(request.getParameter("userAddr"));
 		dto.setUserEmail(request.getParameter("userEmail"));
 		dto.setUserGender(request.getParameter("userGender"));

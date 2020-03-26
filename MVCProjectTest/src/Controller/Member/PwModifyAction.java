@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Contoller.Encrypt;
+import Controller.Encrypt;
 import Model.DAO.MemberDAO;
 
 public class PwModifyAction {

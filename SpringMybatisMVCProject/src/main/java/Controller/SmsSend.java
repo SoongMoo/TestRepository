@@ -14,7 +14,7 @@ public class SmsSend {
 	    Message coolsms = new Message(api_key, api_secret);
 	    HashMap<String, String> params = new HashMap<String, String>();
 	    params.put("to", phoneNum); // 수신번호
-	    params.put("from", "01071461970"); // 발신번호
+	    params.put("from", "01012341234"); // 발신번호
 	    params.put("type", "SMS");
 	    params.put("text", textMassage); // 문자내용
 	    params.put("app_version", "JAVA SDK v2.2");

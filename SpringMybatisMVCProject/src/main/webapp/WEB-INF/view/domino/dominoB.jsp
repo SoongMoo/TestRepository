@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,8 @@
 </script>
 </head>
 <body>
+${fn:substring(ho,0, fn:length(ho)-2) } 
+${fn:substring(ho, fn:length(ho)-2, fn:length(ho)) }
 <h2>Second Domino</h2>
 		<select id="bsel" name="bNum">
 			<option value="">--------선택하세요--------</option>

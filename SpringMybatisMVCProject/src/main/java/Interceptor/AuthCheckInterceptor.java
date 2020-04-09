@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import Model.DTO.AuthInfo;
                                   
 public class AuthCheckInterceptor 
 	extends HandlerInterceptorAdapter{

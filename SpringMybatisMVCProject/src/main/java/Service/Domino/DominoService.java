@@ -20,13 +20,19 @@ public class DominoService {
 	public void execute1(Model model, Integer a1) {
 		List<BDTO> list = dominoRepository.selectB(a1);
 		model.addAttribute("bb", list);
+		model.addAttribute("cc", list);
+		String  ho = "404";
+		System.out.println(ho.substring(0,ho.length()-2));
+		System.out.println(ho.substring(ho.length()-2));
+		model.addAttribute("ho",ho);
 	}
 	public void execute2(Model model, Integer a1, Integer b1) {
+		
 		BDTO dto = new BDTO();
 		dto.setA1(a1);
 		dto.setB1(b1);
 		List<CDTO> list = dominoRepository.selectC(dto);
-		model.addAttribute("cc", list);
+		
 	}
 }
 

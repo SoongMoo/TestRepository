@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import Command.Member.MemberCommand;
+import Controller.SmsSend;
 import Model.DTO.MemberDTO;
 import Repository.Member.MemberRepository;
 
@@ -41,6 +42,9 @@ public class MemberJoinService {
 		System.out.println(memberDTO.getUserPw());
 		result = memberRepository.insertMember(memberDTO);
 		if(result != null) {
+			SmsSend ss = new SmsSend();
+			ss.smsSend(memberDTO.getUserPh1(), 
+					memberDTO.getUserName()+"님 회원가입을 축하합니다.");
 			memberRegMailService.sendMail(memberDTO.getUserEmail(), memberDTO.getUserId());
 		}
 		return result;

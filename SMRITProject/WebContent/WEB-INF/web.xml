@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>SMRITProject</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  	<servlet-name>comment</servlet-name>
+  	<servlet-class>controller.comment.CommentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>comment</servlet-name>
+  	<url-pattern>*.cb</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>survey</servlet-name>
+  	<servlet-class>
+  		controller.survey.SurveyController
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>survey</servlet-name>
+  	<url-pattern>*.sv</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+  	<servlet-name>gd</servlet-name>
+  	<servlet-class>controller.goods.GoodsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>gd</servlet-name>
+  	<url-pattern>*.gd</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ans</servlet-name>
+  	<servlet-class>controller.answerBoard.AnswerBoardController</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ans</servlet-name>
+  	<url-pattern>*.ans</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>member</servlet-name>
+  	<servlet-class>controller.member.MemberController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>member</servlet-name>
+  	<url-pattern>*.mem</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>main</servlet-name>
+  	<servlet-class>controller.loginout.LoginOutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>main</servlet-name>
+  	<url-pattern>*.main</url-pattern>
+  </servlet-mapping> 
+  
+  
+  <servlet>
+  	<servlet-name>qna</servlet-name>
+  	<servlet-class>controller.qnaBoard.QnaBoardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>qna</servlet-name>
+  	<url-pattern>*.qna</url-pattern>
+  </servlet-mapping>
+   
+   <servlet>
+   	<servlet-name>lib</servlet-name>
+   	<servlet-class>controller.libBoard.LibBoardController</servlet-class>
+   </servlet>
+   <servlet-mapping>
+   	<servlet-name>lib</servlet-name>
+   	<url-pattern>*.lib</url-pattern>
+   </servlet-mapping>
+</web-app>
+
+
+
+

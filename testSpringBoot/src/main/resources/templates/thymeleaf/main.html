@@ -17,7 +17,7 @@
 	<tr><td>아이디 입력</td>
 		<td>
 		<input type="text" id="id1" name="id1" th:value="${isId}"/>
-		<!--  <span th:if="${#fields.hasErrors('id1')}" th:errors="*{id1}" ></span> -->
+		<span th:if="${#fields.hasErrors('id1')}" th:errors="*{id1}" ></span>
 		<span th:text="${valid_user}" class="form-group" th:classappend="${valid_user != null}? 'has-error has-feedback'"></span>
 		</td>
 		<td><input type="checkbox" name="idStore" th:attr="checked=${isId != null}? 'true': 'false'"  />아이디 저장
@@ -26,7 +26,7 @@
 	<tr><td>비밀번호</td>
 		<td>
 			<input type="password" id="pw" name="pw" />
-			<!--  <span th:if="${#fields.hasErrors('pw')}" th:errors="*{pw}" ></span> -->
+			<span th:if="${#fields.hasErrors('pw')}" th:errors="*{pw}" ></span>
 			<span th:text="${valid_pw}" class="form-group" th:classappend="${valid_pw != null}? 'has-error has-feedback'"></span>
 		</td>
 		<td><input type="submit" id="btn" value="로그인" /></td>

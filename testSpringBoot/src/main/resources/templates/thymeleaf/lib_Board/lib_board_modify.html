@@ -57,13 +57,12 @@ function modifyboard(){
 			<td>파일</td>
 			<td>
 				<div th:each="file :  ${fileList}" >
-				원본 파일명 : <span th:text="${file.originalfileName}" ></span><br />
-				저장된 파일 명 : 	[[${file.storeFileName }]]
+				원본 파일명 : <span th:text="${file.originalfileName}" id="oldOriginalfileName"></span><br />
+				저장된 파일 명 : <span th:text="${file.storeFileName }" id="oldStoreFileName"></span><br />
+				파일 사이즈 : <span th:text="${file.fileSize }" id="oldFileSize"></span>
 				<input type="button" id="btn" value="삭제"/>
 				</div>
 			</td>	
-			
-
 	</tr>
 	<tr>
 		<td>변경할 파일</td>

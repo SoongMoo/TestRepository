@@ -34,8 +34,8 @@ public class LoginController {
 		return "redirect:/";
 	}
 	@RequestMapping(value = "login" , method = RequestMethod.POST)
-	public String submit(@Validated LoginCommand loginCommand,HttpSession session,HttpServletRequest request,
-			HttpServletResponse response, Model model,BindingResult result) throws Exception{
+	public String submit(@Validated LoginCommand loginCommand,BindingResult result,HttpSession session,HttpServletRequest request,
+			HttpServletResponse response, Model model) throws Exception{
 		System.out.println("LoginController : " + loginCommand.getId1());
 		 if (result.hasErrors()) {
 			System.out.println("aaaaa");

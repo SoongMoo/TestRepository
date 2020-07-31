@@ -54,4 +54,14 @@
 		set READ_COUNT = READ_COUNT + 1
 		where board_num = #{boardNum}
 	</update>
+	<update id="libContenfileUpdate">
+		update libraryboard
+		set BOARD_SUBJECT = #{boardSubject} , 
+			BOARD_CONTENT = #{boardContent},
+			original_file_name = 
+			#{originalFileName} , 
+			store_file_name =  #{storeFileName} ,
+			file_size =  #{fileSize} 
+		where BOARD_NUM = #{boardNum} and BOARD_PASS = #{boardPass} and  user_id =  #{userId} 
+	</update>
 </mapper>

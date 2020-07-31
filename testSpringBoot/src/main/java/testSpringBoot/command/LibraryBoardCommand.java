@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LibraryBoardCommand {
+	String boardNum;
 	@NotEmpty(message = "이름을 입력해주세요!")
 	String boardName;
 	@NotEmpty(message = "비밀번호를 입력해주세요!")
@@ -23,4 +24,7 @@ public class LibraryBoardCommand {
 	String boardSubject;
 	String boardContent;
 	MultipartFile [] report;
+	String storeFileName;
+	String originalFileName;
+	String fileSize;
 }

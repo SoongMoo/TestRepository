@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +11,11 @@ $(function(){
 	$("#btn").click(function(){
 		if($(this).attr("value") == "삭제"){
 			$(this).attr("value","삭제취소");
-			$("#fileDel").val("${list[0].storeFileName}");
+			$("#storeFileName").val("${list[0].storeFileName}");
+			$("#originalFileName").val("${list[0].originalFileName}");
+			$("#fileSize").val("${list[0].fileSize}");
 			$("#chnFile").html(
-					"<input type='file' name='fileUp' />"
+					"<input type='file' name='report' />"
 			);
 		}else{
 			$(this).attr("value","삭제")
@@ -30,7 +30,7 @@ function modifyboard(){
 	</script>
 </head>
 <body>
-<form action="libBoardModifyPro.lib" method="post" name="modifyform" 
+<form action="libBoardModifyPro" method="post" name="modifyform" 
 	enctype="multipart/form-data">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
@@ -42,7 +42,7 @@ function modifyboard(){
 		</td>
 		<td>
 			<input name="boardSubject" size="50" maxlength="100" 
-				value="${list[0].boardSubject }">
+				th:value="${list[0].boardSubject }">
 		</td>
 	</tr>
 	<tr>
@@ -50,16 +50,20 @@ function modifyboard(){
 			<div align="center">내 용</div>
 		</td>
 		<td>
-			<textarea name="boardContent" cols="67" rows="15">${list[0].boardContent }</textarea>
+			<textarea name="boardContent" cols="67" rows="15">[[${list[0].boardContent }]]</textarea>
 		</td>
 	</tr>
 	<tr>
 			<td>파일</td>
 			<td>
-				원본 파일명 : ${list[0].originalFileName }<br />
-				저장된 파일 명 : ${list[0].storeFileName}
+				<div th:each="file :  ${fileList}" >
+				원본 파일명 : <span th:text="${file.originalfileName}" ></span><br />
+				저장된 파일 명 : 	[[${file.storeFileName }]]
 				<input type="button" id="btn" value="삭제"/>
+				</div>
 			</td>	
+			
+
 	</tr>
 	<tr>
 		<td>변경할 파일</td>
@@ -89,9 +93,11 @@ function modifyboard(){
 		</td>
 	</tr>
 </table>
-<input type="text" name="fileDel" id = "fileDel" />	
+<input type="text" name="storeFileName" id = "storeFileName" />	
+<input type="text" name="originalFileName" id = "originalFileName" />	
+<input type="text" name="fileSize" id = "fileSize" />	
 <input type="text" name="boardNum" 
-		value="${list[0].boardNum }" />
+		th:value="${list[0].boardNum }" />
 </form>
 </body>
 </html>

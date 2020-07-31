@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import testSpringBoot.command.LibraryBoardCommand;
 import testSpringBoot.controller.FileDownLoad;
+import testSpringBoot.service.libraryBoard.LibBoardModifyService;
 import testSpringBoot.service.libraryBoard.LibraryBoardDetailService;
 import testSpringBoot.service.libraryBoard.LibraryBoardListService;
 import testSpringBoot.service.libraryBoard.LibraryBoardService;
@@ -32,7 +33,8 @@ public class LibraryController {
 	LibraryBoardDetailService libraryBoardDetailService;
 	@Autowired
 	FileDownLoad fileDownLoad;
-	
+	@Autowired
+	LibBoardModifyService libBoardModifyService;
 	@ModelAttribute
 	LibraryBoardCommand setLibraryBoardCommand() {
 		return new LibraryBoardCommand();
@@ -76,5 +78,11 @@ public class LibraryController {
 			@RequestParam(value = "boardNum" ) String boardNum ,HttpSession session) throws Exception{
 		libraryBoardDetailService.libBoardDetail(boardNum, session, model);
 		return "thymeleaf/lib_Board/lib_board_modify";
+	}
+	@RequestMapping("libBoardModifyPro")
+	public String libBoardModifyPro(LibraryBoardCommand libraryBoardCommand, Model model, HttpServletRequest request ,HttpSession session) throws Exception{
+		System.out.println("libBoardModifyPro : " + libraryBoardCommand.getBoardNum());
+		libBoardModifyService.libBoardModify( libraryBoardCommand,	 session,  request);
+		return "redirect:/libraryBoard/libBoardDetail/"+libraryBoardCommand.getBoardNum();
 	}
 }

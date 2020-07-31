@@ -37,7 +37,7 @@
 		insert into member ( <include refid="basecolumn" />  )
 		values(#{userId},#{userPw},#{userName},#{userBirth},
 		#{userGender},#{userEmail},#{userAddr},#{userPh1},
-		#{userPh2},sysdate,null)
+		#{userPh2},sysdate,null,null)
 	</insert>
 	<select id="getMemberList" parameterType="testSpringBoot.domain.StartEndPageDTO" resultMap="baseMember">
 		select rn, <include refid="basecolumn" />

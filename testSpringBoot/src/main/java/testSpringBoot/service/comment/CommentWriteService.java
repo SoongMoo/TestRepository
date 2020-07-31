@@ -13,7 +13,6 @@ import testSpringBoot.domain.CommentDTO;
 import testSpringBoot.domain.CommentRepliesDTO;
 import testSpringBoot.domain.ReplyDTO;
 import testSpringBoot.mapper.CommentMapper;
-import testSpringBoot.repository.CommentSessionRepository;
 @Component
 @Service
 @Transactional

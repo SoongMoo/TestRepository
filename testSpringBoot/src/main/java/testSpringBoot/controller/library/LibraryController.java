@@ -71,5 +71,10 @@ public class LibraryController {
 		fileDownLoad.fileDownLoad("/static/lib_Board/upload", fileName, request, response);
 		return "thymeleaf/lib_Board/lib_board_view";
 	}
-	
+	@RequestMapping("libBoardModify")
+	public String libBoardModify(Model model, 
+			@RequestParam(value = "boardNum" ) String boardNum ,HttpSession session) throws Exception{
+		libraryBoardDetailService.libBoardDetail(boardNum, session, model);
+		return "thymeleaf/lib_Board/lib_board_modify";
+	}
 }

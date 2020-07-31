@@ -52,10 +52,10 @@
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			<a th:href="@{/libraryBoard/libBoardModify(num=${list[0].boardNum}) }">
+			<a th:href="@{/libraryBoard/libBoardModify(boardNum=${list[0].boardNum}) }">
 			[수정]
 			</a>&nbsp;&nbsp;
-			<a th:href="@{/libraryBoard/libBoardDel(num=${list[0].boardNum}) }">
+			<a th:href="@{/libraryBoard/libBoardDel(boardNum=${list[0].boardNum}) }">
 			[삭제]
 			</a>&nbsp;&nbsp;
 			<a th:href="@{/libraryBoard/library}">[목록]</a>&nbsp;&nbsp;
@@ -63,6 +63,6 @@
 		</td>
 	</tr>
 </table>
-<img th:src="@{/static/images/img1.jpg}">
+<!-- <img th:src="@{/static/images/img1.jpg}"> -->
 </body>
 </html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testSpringBoot.mapper.MemberMapper" >
+<cache />
+	<select id="getSelectMemberAll" resultType="string">
+		select user_email from member 
+	</select>
+	<resultMap type="testSpringBoot.domain.MemberDTO" id="baseMember" >
+		<constructor>
+			<idArg column="user_Id" javaType="string" />
+			<arg column="USER_PW" javaType="string" />
+			<arg column="USER_NAME" javaType="string" />
+			<arg column="USER_BIRTH" javaType="java.sql.Timestamp"/>
+			<arg column="USER_GENDER" javaType="string" />
+			<arg column="USER_EMAIL" javaType="string" />
+			<arg column="USER_ADDR" javaType="string" />
+			<arg column="USER_PH1" javaType="string" />
+			<arg column="USER_PH2" javaType="string" />
+			<arg column="USER_REGIST" javaType="java.sql.Timestamp"/>
+			<arg column="JOIN_OK" javaType="string"/>
+			<arg column="INTEREST" javaType="string"/>
+		</constructor>
+	</resultMap>
+	<update id="joinOkUpdate" parameterType="testSpringBoot.domain.MemberDTO">
+		update member
+		set join_ok = #{joinOk}
+		where user_id = #{userId} and USER_EMAIL = #{userEmail} 
+		and join_ok is null
+	</update>
+
+	<sql id="basecolumn">
+		USER_ID,USER_PW,USER_NAME, USER_BIRTH, USER_GENDER, 
+		USER_EMAIL,USER_ADDR,USER_PH1, USER_PH2, USER_REGIST , JOIN_OK,INTEREST
+	</sql>
+	<insert id="insertMember" parameterType="testSpringBoot.domain.MemberDTO" >
+		insert into member ( <include refid="basecolumn" />  )
+		values(#{userId},#{userPw},#{userName},#{userBirth},
+		#{userGender},#{userEmail},#{userAddr},#{userPh1},
+		#{userPh2},sysdate,null)
+	</insert>
+	<select id="getMemberList" parameterType="testSpringBoot.domain.StartEndPageDTO" resultMap="baseMember">
+		select rn, <include refid="basecolumn" />
+		from (select rownum rn, <include refid="basecolumn" />
+			 from ( select 
+						<include refid="basecolumn" />
+					from member
+					<where>
+						<if test="userId != null ">
+							user_id = #{userId}
+						</if>
+					</where>
+					order by user_regist desc))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage} 
+	</select>
+	<select id="getMemberCount" resultType="int">
+		select count(*) from member
+	</select>	
+	
+	<update id="memberUpdate" parameterType="testSpringBoot.domain.MemberDTO" >
+		update member
+		<trim prefix="set" suffixOverrides=",">
+			user_ph2 = #{userPh2},
+			<if test="userId != null">user_Id = #{userId},</if>
+			<if test="userPw != null">user_pw = #{userPw},</if>
+			<if test="userName != null">user_Name = #{userName},</if>
+			<if test="userBirth != null">user_birth = #{userBirth},</if>
+			<if test="userGender != null">user_gender = #{userGender},</if>
+			<if test="userEmail != null">user_email = #{userEmail},</if>
+			<if test="userAddr != null">user_addr = #{userAddr},</if>
+			<if test="userPh1 !=null"> user_ph1 = #{userPh1},</if>
+		</trim>
+		<where>
+			user_Id = #{userId}
+			<if test="userPw != null">
+				and user_pw = #{userPw}
+			</if>		
+		</where>
+	</update>
+	<delete id="memberDelete" parameterType="testSpringBoot.domain.MemberDTO" >
+		delete from member
+		<where> 
+			user_Id = #{userId} 
+			<if test="userPw != null">
+				and user_pw = #{userPw}
+			</if>
+		</where>
+	</delete>
+	
+	<update id="userPwChange" parameterType="testSpringBoot.domain.UserPwChangeDTO">
+		update member
+		set user_pw = #{newUserPw}
+		where user_Id = #{userId} and user_pw = #{userPw}
+	</update>
+</mapper>

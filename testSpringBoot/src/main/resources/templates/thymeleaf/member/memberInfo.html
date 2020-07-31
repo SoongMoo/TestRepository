@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-latest.js" ></script>
+<script th:inline="javascript">
+$(function(){
+	userId = [[${memberCommand.userId }]];
+	$("#modify").click(function(){
+		location.href="../memberModify?id="+userId;
+	});
+	$("#memDel").click(function(){
+		location.href="../memberInfoDel/"+userId;
+	});
+});
+</script>
+</head>
+<body>
+
+이름 : <span th:text="${memberCommand.userName }"></span><br />
+아이디 : <span th:text="${memberCommand.userId }"></span><br />
+이메일  : <span th:text="${memberCommand.userEmail }"></span><br />
+생년월일  : <span th:text="${#dates.format(memberCommand.userBirth, 'yyyy-MM-dd')}" ></span> <br />
+<!-- 
+model.addAttribute("standardDate", new Date());
+model.addAttribute("localDateTime", LocalDateTime.now());
+model.addAttribute("localDate", LocalDate.now());
+model.addAttribute("timestamp", Instant.now());
+
+<h1>Format ISO</h1>
+<p th:text="${#dates.formatISO(standardDate)}"></p>
+<p th:text="${#temporals.formatISO(localDateTime)}"></p>
+<p th:text="${#temporals.formatISO(localDate)}"></p>
+<p th:text="${#temporals.formatISO(timestamp)}"></p>
+
+<h1>Format manually</h1>
+<p th:text="${#dates.format(standardDate, 'dd-MM-yyyy HH:mm')}"></p>
+<p th:text="${#temporals.format(localDateTime, 'dd-MM-yyyy HH:mm')}"></p>
+<p th:text="${#temporals.format(localDate, 'MM-yyyy')}"></p>
+ -->
+성별 : <span th:if="${memberCommand.userGender == 'M'}">남자</span>
+	 <span th:if="${memberCommand.userGender == 'F'}">여자</span>	
+	 <br />
+연락처 1 : <span th:text="${memberCommand.userPh1 }"></span><br />
+연락처 2 : <span th:text="${memberCommand.userPh2 }"></span><br />
+등록일 : <span th:text="${memberCommand.userRegist }"></span><br />
+주소  : <span th:text="${memberCommand.userAddr }"></span><br />
+<input type="button" name="modify" id ="modify" value="수   정" >
+<input type="button" value="취  소" 
+				onclick = "javascript:history.back();" />
+<input type="button" value="회원삭제" id ="memDel"/>
+</body>
+</html>

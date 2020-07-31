@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testSpringBoot.mapper.LibraryBoardMapper" >
+	
+	<sql id="basecolumn">
+		BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,BOARD_DATE,
+		IP_ADDR, READ_COUNT, ORIGINAL_FILE_NAME,STORE_FILE_NAME,FILE_SIZE
+	</sql>
+	
+	<insert id="libraryInsert" parameterType="testSpringBoot.domain.LibraryBoardDTO" >
+		insert into LIBRARYBOARD ( <include refid="basecolumn" />  )
+		values(NUM_SEQ.nextval,#{userId},#{boardName},#{boardPass},
+		#{boardSubject},#{boardContent},sysdate,#{ipAddr},
+		0,#{originalFileName},#{storeFileName},#{fileSize})
+	</insert>
+	<resultMap type="testSpringBoot.domain.LibraryBoardDTO" id="baseLibrary">
+		<id column="BOARD_NUM" jdbcType="BIGINT" property="boardNum"/>
+		<id column="USER_ID" jdbcType="VARCHAR" property="userId"/>
+		<result column="BOARD_NAME" jdbcType="VARCHAR" property="boardName"/>
+		<result column="BOARD_PASS" jdbcType="VARCHAR" property="boardPass"/>
+		<result column="BOARD_SUBJECT" jdbcType="VARCHAR" property="boardSubject"/>
+		<result column="BOARD_CONTENT" jdbcType="VARCHAR" property="boardContent"/>
+		<result column="BOARD_DATE" jdbcType="TIMESTAMP" property="boardDate"/>
+		<result column="IP_ADDR" jdbcType="VARCHAR" property="ipAddr"/>
+		<result column="READ_COUNT" jdbcType="BIGINT" property="readCount"/>
+		<result column="ORIGINAL_FILE_NAME" jdbcType="VARCHAR" property="originalFileName"/>
+		<result column="STORE_FILE_NAME" jdbcType="VARCHAR" property="storeFileName"/>
+		<result column="FILE_SIZE" jdbcType="BIGINT" property="fileSize"/>
+	</resultMap>
+	<select id="getLibraryBoardList"  resultMap="baseLibrary">
+		select rn, <include refid="basecolumn" />
+		from (select rownum rn, <include refid="basecolumn" />
+			 from ( select 
+						<include refid="basecolumn" />
+					from LIBRARYBOARD
+					<trim prefix="where" prefixOverrides="AND | OR">
+						<if test="userId != null ">
+							and user_id = #{userId}
+						</if>
+						<if test="num != null ">
+							and board_num = #{num}
+						</if>
+					</trim>
+					order by BOARD_DATE desc))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage}
+	</select>
+	
+	<select id="getLibraryCount" resultType="int">
+		select count(*) from LIBRARYBOARD
+	</select>
+	<update id="updateReadCount">
+		update LIBRARYBOARD
+		set READ_COUNT = READ_COUNT + 1
+		where board_num = #{boardNum}
+	</update>
+</mapper>

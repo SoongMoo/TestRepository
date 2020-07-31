@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+글번호 : <span th:text="${replies.commentDTO.commentNo }"></span><br />
+아이디 : <span th:text="${replies.commentDTO.cuserId }"></span><br />
+글제목 : <span th:text="${replies.commentDTO.commentSubject }"></span><br />
+글내용 : <span th:text="${replies.commentDTO.commentContent }"></span><br />
+작성일 : <span th:text="${#dates.format(replies.commentDTO.regDate, 'yyyy-MM-dd')}"></span><br />
+<p>
+<form th:action="@{/comment/replyInsert}" method="post" >
+	<input type="hidden" name="cuserId" th:value="${replies.commentDTO.cuserId }"/>
+	<input type="hidden" name="commentNo" th:value="${replies.commentDTO.commentNo }"/>
+	댓글쓰기 : <input type = "text" name="replyContent"/>
+	<input type="submit" value="댓글 달기" />
+</form>
+</p>
+<div th:each="reply : ${replies.replies}"  >
+	<span th:if="${reply.replyNo != null}">
+	답글번호 : <span th:text="${reply.replyNo }"></span><br />
+	답글작성자 : <span th:text="${reply.ruserId }"></span><br />
+	답글내용 : <span th:text="${reply.replyContent }"></span><br />
+	답글작성일시 : <span th:text="${#dates.format(reply.regDate, 'yyyy-MM-dd')}"></span>
+	<p></p>
+</span>
+</div>
+</body>
+</html>

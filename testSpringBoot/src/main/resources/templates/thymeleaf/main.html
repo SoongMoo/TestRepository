@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+     layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<span th:if="${session.authInfo == null}" >
+<form th:action="@{/login}" name="frm" id="frm" method="post" th:object="${loginCommand}">
+<table border =1>
+	<tr><td colspan=3>
+			자동로그인<input type ="checkbox" name="autoLogin" />
+		</td>
+	</tr>
+	<tr><td>아이디 입력</td>
+		<td>
+		<input type="text" id="id1" name="id1" th:value="${isId}"/>
+		<!-- <span th:if="${#fields.hasErrors('id1')}" th:errors="*{id1}" ></span> -->
+		<span th:text="${valid_user}" class="form-group" th:classappend="${valid_user != null}? 'has-error has-feedback'"></span>
+		</td>
+		<td><input type="checkbox" name="idStore" th:attr="checked=${isId != null}? 'true': 'false'"  />아이디 저장
+		</td>
+	</tr>
+	<tr><td>비밀번호</td>
+		<td>
+			<input type="password" id="pw" name="pw" />
+			<!-- <span th:if="${#fields.hasErrors('pw')}" th:errors="*{pw}" ></span> -->
+			<span th:text="${valid_pw}" class="form-group" th:classappend="${valid_pw != null}? 'has-error has-feedback'"></span>
+		</td>
+		<td><input type="submit" id="btn" value="로그인" /></td>
+	</tr>
+	<tr><td colspan=3>
+		<a href="#">아이디 찾기</a>|<a href="#">비밀번호 찾기</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/register/agree">회원가입</a>
+	</td></tr>
+</table>
+</form>
+</span>
+<span th:if="${session.authInfo}" >
+<!-- 로그인 되었을 때 -->
+<a href ="/member/memberDetail">내 정보</a>
+<a href ="logout" >로그아웃</a>
+<a href ="member/list">회원리스트</a>
+<a href ="board/boardlist">공지사항 게시판</a>
+<a href ="libraryBoard/library">일반 자료실</a>
+<a href ="answer/answerBoard">답변형 게시판</a>
+<a href = "comment/comment_list">댓글 게시판</a>
+<a href = "goods/goodsList">상품목록</a> <!-- Ajax : JSON -->
+<a href = "memberAllMail">단체 메일보내기</a>
+<a href = "survey/survey" >설문지</a>
+<a href = "ajaxTest" >ajaxTest</a>
+<a href = "AjaxTest1" >ajaxTest1</a>
+<a href = "domino" >domino</a>
+<a href = "jsonMian" >jsonMain</a>
+<a href = "chatting" >chatting</a>
+</span>
+</body>
+</html>

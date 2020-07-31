@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>test</groupId>
+  <artifactId>testSpringBoot</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>testSpringBoot Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java-version>1.8</java-version>
+	<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+	<org.springframework-version>4.1.0.RELEASE</org.springframework-version>
+	<org.slf4j-version>1.6.6</org.slf4j-version>
+  </properties>
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.0.1.RELEASE</version>
+  </parent>
+    <!--  repositories -->
+  <repositories>
+	 <repository>
+	   <id>oracle</id>
+	   <url>http://maven.jahia.org/maven2</url>
+	 </repository>
+  </repositories>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <!--  html설정 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+     <dependency>
+        <groupId>org.thymeleaf.extras</groupId>
+        <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        <version>3.0.1.RELEASE</version>
+    </dependency>
+    <!-- 스프링부트 웹 설정, jsp엔진은 포함되어 있지 않음 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+        <!--  jsp를 사용하기 위해서 추가 : JSP lib -->
+    <dependency> 
+    	<groupId>org.apache.tomcat.embed</groupId> 
+    	<artifactId>tomcat-embed-jasper</artifactId> 
+    	<scope>provided</scope> 
+    </dependency>
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+	</dependency>
+    <!-- 스링부트 setter/getter 자동 생 -->
+    <dependency>
+    	<groupId>org.projectlombok</groupId>
+    	<artifactId>lombok</artifactId>
+    	<version>1.16.4</version>
+    	<scope>provided</scope>
+    </dependency>
+    <!-- jsp파일 서버 재시작 없이 바로 적용하기  spring boot auto restart -->
+    <dependency> 
+    	<groupId>org.springframework.boot</groupId> 
+    	<artifactId>spring-boot-devtools</artifactId> 
+    </dependency>
+    <!--  jstl, form spring fmt core  -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>   
+    <!-- was -->
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>2.2</version>
+		<scope>provided</scope>
+	</dependency>  
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.0.1</version>
+		<scope>provided</scope>
+	</dependency>
+	<!-- 파일 객체 -->
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>2.4</version>
+	</dependency>
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.3.3</version>
+	</dependency>
+	<!-- email -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-mail</artifactId>
+		<version>2.0.1.RELEASE</version>
+	</dependency>
+	
+	<!-- oracle -->
+	<dependency>
+    	<groupId>com.oracle</groupId>
+    	<artifactId>ojdbc6</artifactId>
+    	<version>12.1.0.2</version>
+	</dependency>	
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-dbcp2</artifactId>
+	    <version>2.6.0</version>
+	</dependency>
+<!-- jdbc lib for spring boot -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-jdbc</artifactId>
+	</dependency>
+<!-- mybatis -->
+<!--  	<dependency>
+		<groupId>org.mybatis.spring.boot</groupId>
+		<artifactId>mybatis-spring-boot-starter</artifactId>
+		<version>2.0.0</version>
+	</dependency> -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+                
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.2.8</version>
+        </dependency>
+	<!-- SMS -->
+	<dependency>
+	    <groupId>net.nurigo</groupId>
+	    <artifactId>javaSDK</artifactId>
+	    <version>2.2</version>
+	</dependency>
+	<!-- websocket-api -->
+	<dependency>
+	    <groupId>javax.websocket</groupId>
+	    <artifactId>javax.websocket-api</artifactId>
+		<version>1.1</version>
+		<scope>provided</scope>
+	</dependency>
+	<!-- JSON -->
+	<dependency>  <!-- @ResponseBody사용 -->
+       <groupId>org.codehaus.jackson</groupId>
+       <artifactId>jackson-mapper-asl</artifactId>
+       <version>1.9.13</version>
+	</dependency>
+	<dependency>  <!-- jsonView 사용 -->
+	    <groupId>net.sf.json-lib</groupId>
+	    <artifactId>json-lib-ext-spring</artifactId>
+	    <version>1.0.2</version>
+	</dependency> 
+		<!--log -->
+	 <dependency> 
+	 	<groupId>org.bgee.log4jdbc-log4j2</groupId> 
+	 	<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId> 
+	 	<version>1.16</version> 
+	 </dependency>
+	<!-- validation -->
+	<dependency> 
+	    <groupId>org.springframework.boot</groupId> 
+	    <artifactId>spring-boot-starter-validation</artifactId> 
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-test</artifactId>
+	    <scope>test</scope>
+	    <exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+		</exclusions>
+	</dependency>
+<!-- 		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+		</dependency> -->
+  </dependencies>
+
+  <build>
+    <finalName>testSpringBoot</finalName>
+    <plugins>
+      	<plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+
+  </build>
+</project>

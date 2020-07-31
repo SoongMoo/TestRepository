@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-latest.js" ></script>
+<script type="text/javascript">
+$(function(){
+	$("#modify").click(function(){
+		location.href="memberPw"
+	});
+	$("#memDel").click(function(){
+		location.href="memberUserDel"
+	});
+	$("#pwModify").click(function(){
+		location.href="memberPwForm"
+	});
+});
+</script>
+</head>
+<body>
+이름 : <span th:text="${memberCommand.userName }"></span><br />
+아이디 : <span th:text="${memberCommand.userId }"></span><br />
+이메일  : <span th:text="${memberCommand.userEmail }"></span><br />
+생년월일  : <span th:text="${#dates.format(memberCommand.userBirth, 'yyyy-MM-dd')}" ></span> <br />
+성별 : <span th:if="${memberCommand.userGender == 'M'}">남자</span>
+	 <span th:if="${memberCommand.userGender == 'F'}">여자</span>	
+	 <br />
+연락처 1 : <span th:text="${memberCommand.userPh1 }"></span><br />
+연락처 2 : <span th:text="${memberCommand.userPh2 }"></span><br />
+등록일 : <span th:text="${memberCommand.userRegist }"></span><br />
+주소  : <span th:text="${memberCommand.userAddr }"></span><br />
+<input type="button" name="modify" id ="modify" value="수   정" >
+<input type="button" name="pwModify" id ="pwModify" value="비밀번호" >
+<input type="button" value="취  소" 
+				onclick = "javascript:history.back();" />
+<input type="button" value="탈퇴" id ="memDel"/>
+</body>
+</html>

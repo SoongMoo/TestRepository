@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div#memberTab {width:610px;margin:0 auto;}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+
+<form th:action='@{/register/memberJoinAction}' method='post' name='frm' id="frm" th:object="${memberCommand}">
+<div layout:fragment="content" class="col-sm-12 memberTab">
+<fieldset>
+	<legend>회원가입 정보</legend>
+<table width = '600' align = 'center' border = '1' >
+	<caption><strong>회원 가입</strong></caption>
+	<colgroup>
+	    <col width="25%" />
+		<col width="75%"  />
+    </colgroup>
+	<tfoot>
+	<tr>
+		<th colspan = 2>
+			<input type='submit' value='가입완료' />&nbsp;&nbsp;
+			<input type='reset' value='다시 입력' />&nbsp;&nbsp;
+			<input type='button' value='가입 안함' /></th>
+	</tr>
+	</tfoot>
+	<tbody>
+	<tr>
+		<th colspan= '2'>사용자 ID와 비밀번호 입력</th>
+	</tr>
+	<tr>
+		<th ><label for='userId'>사용자 ID</label></th><!-- id:#userId1, .userId2 -->
+		<td ><input type='text' name='userId' id='userId'  th:field="*{userId}" 
+				class='userId' size='15' maxlength='10' autofocus="autofocus"/>
+			<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" ></span>
+			<span th:text="${duplicate_userId}"></span>
+			
+		</td>
+	</tr>
+	<tr>
+		<th ><label for='userPw'>비밀번호</label></th>
+		<td ><input type='password' name='userPw' id='userPw'  th:field="*{userPw}"
+		size='15' maxlength='12'/>
+		<span th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" ></span></td>
+	</tr>
+	<tr>
+		<th><label for='userPwCon'>비밀번호확인</label></th>
+		<td><input type='password' name='userPwCon' id='userPwCon'  th:field="*{userPwCon}" 
+		size='15' maxlength='12'/>
+		<span th:if="${#fields.hasErrors('userPwCon')}" th:errors="*{userPwCon}" ></span>
+		<span th:text="${valid_userPwCon}"></span></td>
+		
+	</tr>
+	<tr>
+		<th colspan= '2'>사용자 기본 정보</th>
+	</tr>
+	<tr>
+		<th><label for='userName'>사용자 이름</label></th>
+		<td><input type ='text' name='userName' id='userName'  th:field="*{userName}" size='15' maxlength='12'>
+		<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" ></span></td>
+	</tr>
+ 	<tr>
+		<th><label for='userBirth'>생년원일</label></th>
+		<td><input type='datetime-local' name='userBirth' id='userBirth'  th:field="*{userBirth}"
+		placeholder='1999-12-12'>
+		<span th:if="${#fields.hasErrors('userBirth')}" th:errors="*{userBirth}" ></span></td>
+	</tr>
+ 	<tr>
+		<th >성별</th>	
+		<td>
+		<input type='radio' name='userGender' id='userGender' value='M'  /> 남자 &nbsp;&nbsp;&nbsp;&nbsp; 
+		<input type='radio' name='userGender' id='userGender' value='F'  />	여자
+		<span th:if="${#fields.hasErrors('userGender')}" th:errors="*{userGender}" ></span></td>
+	</tr>
+	<tr>
+		<th colspan= '2'>사용자 연락처</th>
+	</tr>
+ 	<tr>
+		<th><label for='userEmail'>사용자 이메일</label></th>
+		<td><input type='email' name='userEmail' id='userEmail'  th:field="*{userEmail}"/>
+		<span th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" ></span></td>
+	</tr>
+	<tr>
+		<th><label for='userAddr'>사용자 주소</label></th>
+		<td><input type='text' name='userAddr' id ='userAddr'  th:field="*{userAddr}" />
+		<span th:if="${#fields.hasErrors('userAddr')}" th:errors="*{userAddr}" ></span></td>
+	</tr>
+	<tr>
+		<th ><label for='userPh1'>연락처 1</label></th>
+		<td><input type='text' name='userPh1' id ='userPh1'  th:field="*{userPh1}" 
+		placeholder='123-123-1234 ,123-1234-1234' size= '26' maxlength='13' />
+		<span th:if="${#fields.hasErrors('userPh1')}" th:errors="*{userPh1}" ></span></td>
+	</tr>
+	<tr>
+		<th><label for='userPh2'>연락처 2</label></th>
+		<td><input type='text' name='userPh2' id ='userPh2'  th:field="*{userPh2}" placeholder='123-123-1234 ,123-1234-1234' size= '26' maxlength='13' /></td>
+	</tr>
+	<tr>
+		<th>관심 분야</th>
+		<td>
+			<input type="checkbox" value="HTML" name="chk1" th:id = "chk1" th:value="HTML"  />HTML
+			<input type="checkbox" value="CSS" name="chk1" th:id = "chk1" th:value="CSS" />CSS
+			<input type="checkbox" value="Javascript" th:id = "chk1" name="chk1" th:value="Javascript" />Javascript
+		</td>
+	</tr>
+	</tbody>
+</table>
+<fieldset>
+</div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/main/resources/application.properties=UTF-8
+encoding//src/main/resources/templates/thymeleaf/main.html=UTF-8
+encoding//src/main/resources/templates/thymeleaf/member/agree.html=UTF-8
+encoding//src/main/resources/templates/thymeleaf/member/fail.html=UTF-8
+encoding//src/main/resources/templates/thymeleaf/member/memberForm.html=UTF-8
+encoding//src/main/resources/templates/thymeleaf/member/success.html=UTF-8
+encoding//src/main/resources/templates/thymeleaf/testView.html=UTF-8
+encoding//src/test/java=UTF-8
+encoding/<project>=UTF-8

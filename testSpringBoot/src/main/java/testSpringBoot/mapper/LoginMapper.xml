@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testSpringBoot.mapper.LoginMapper">
+	<sql id="basecolumn">
+		USER_ID,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER
+		, USER_ADDR, USER_PH1,USER_PH2,USER_EMAIL, USER_REGIST, JOIN_OK, INTEREST
+	</sql>
+	<resultMap type="testSpringBoot.domain.MemberDTO" id="baseMember" >
+		<constructor>
+			<idArg column="user_Id" javaType="string" />
+			<arg column="USER_PW" javaType="string" />
+			<arg column="USER_NAME" javaType="string" />
+			<arg column="USER_BIRTH" javaType="java.sql.Timestamp"/>
+			<arg column="USER_GENDER" javaType="string" />
+			<arg column="USER_EMAIL" javaType="string" />
+			<arg column="USER_ADDR" javaType="string" />
+			<arg column="USER_PH1" javaType="string" />
+			<arg column="USER_PH2" javaType="string" />
+			<arg column="USER_REGIST" javaType="java.sql.Timestamp"/>
+			<arg column="JOIN_OK" javaType="string"/>
+			<arg column="INTEREST" javaType="string"/>
+		</constructor>
+	</resultMap>
+	
+	<select id="getSelectUser"  parameterType="testSpringBoot.domain.MemberDTO" resultMap="baseMember">
+		select 
+			<include refid="basecolumn" />
+		from member
+		<trim prefix="where" prefixOverrides="AND | OR " >
+			<if test="userPw != null">
+			user_pw = #{userPw}
+			</if>
+			<if test="userId != null">
+			and user_id = #{userId} and join_ok is not null
+			</if>
+		</trim>
+	</select>
+</mapper>

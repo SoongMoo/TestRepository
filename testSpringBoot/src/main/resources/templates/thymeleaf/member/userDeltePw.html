@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-latest.js" ></script>
+<script type="text/javascript">
+$(function(){
+	$("#bts").click(function(){
+		if($("#pw").val() == ""){
+			alert("비밀번호를 입력해 주세요...");
+			$("#pw").focus();
+			return false;
+		}
+		if(confirm("정말 진짜 사실 real 탈퇴?")){
+			$("#frm").submit();
+		}
+	});
+});
+</script>	
+</head>
+<body>
+<form action = "memberUserDelPro" method="post" name="frm" id ="frm">
+	비밀번호 : <input type="password" name = "userPw" id = "pw" /><span th:text="${valid_Pw}"> </span><br />
+	<br />
+	<input type="button" value="확인" id ="bts" />
+</form>
+</body>
+</html>

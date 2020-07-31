@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testSpringBoot.mapper.CommentMapper">
+<sql id="baseCommentColumn">
+	COMMENT_NO,CUSER_ID,COMMENT_SUBJECT,COMMENT_CONTENT, REG_DATE as CREG_DATE
+</sql>
+
+<sql id="baseColumn">
+	COMMENT_NO,CUSER_ID,COMMENT_SUBJECT,COMMENT_CONTENT,REG_DATE
+</sql>
+
+<sql id="baseMemberColumn">
+	USER_ID,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER
+	, USER_EMAIL, USER_ADDR, USER_PH1,USER_PH2, USER_REGIST
+</sql>
+<resultMap type="testSpringBoot.domain.MemberDTO" id="associationResultMap">
+	<id column="user_id" jdbcType="VARCHAR" property="userId"/>
+	<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
+	<result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+	<result column="USER_BIRTH" jdbcType="TIMESTAMP" property="userBirth"/>
+	<result column="USER_GENDER" jdbcType="VARCHAR" property="userGender"/>
+	<result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
+	<result column="USER_ADDR" jdbcType="VARCHAR" property="userAddr"/>
+	<result column="USER_PH1" jdbcType="VARCHAR" property="userPh1"/>
+	<result column="USER_PH2" jdbcType="VARCHAR" property="userPh2"/>
+	<result column="USER_REGIST" jdbcType="TIMESTAMP" property="userRegist"/>
+	<association property="commentDTO" javaType="testSpringBoot.domain.CommentDTO" column="cuser_id">
+		<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+		<id column="cuser_id" jdbcType="VARCHAR" property="cuserId"/>
+		<result column="CREG_DATE" jdbcType="TIMESTAMP" property="regDate"/>
+		<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject"/>
+		<result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>
+	</association>
+</resultMap>
+<resultMap type="testSpringBoot.domain.MemberDTO" id="baseMember">
+	<id column="user_id" jdbcType="VARCHAR" property="userId"/>
+	<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
+	<result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+	<result column="USER_BIRTH" jdbcType="TIMESTAMP" property="userBirth"/>
+	<result column="USER_GENDER" jdbcType="VARCHAR" property="userGender"/>
+	<result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
+	<result column="USER_ADDR" jdbcType="VARCHAR" property="userAddr"/>
+	<result column="USER_PH1" jdbcType="VARCHAR" property="userPh1"/>
+	<result column="USER_PH2" jdbcType="VARCHAR" property="userPh2"/>
+	<result column="USER_REGIST" jdbcType="TIMESTAMP" property="userRegist"/>
+</resultMap>
+
+<resultMap type="testSpringBoot.domain.ReplyDTO" id="replyBaseMap">
+		<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+		<id column="cuser_id" jdbcType="VARCHAR" property="cuserId"/>
+		<id column="reply_no" jdbcType="BIGINT" property="replyNo"/>
+		<id column="ruser_id" jdbcType="VARCHAR" property="ruserId"/>
+		<result column="reply_content" jdbcType="VARCHAR" property="replyContent"/>
+		<result column="RREG_DATE" jdbcType="TIMESTAMP" property="regDate"/>
+</resultMap>
+
+<resultMap type="testSpringBoot.domain.ReplyUserDTO" id="aaaa">
+	<association property="replyDTO" column="ruser_id" javaType="testSpringBoot.domain.ReplyDTO" 
+	resultMap="replyBaseMap"/>
+	<association property="memberDTO" column="user_id" javaType="testSpringBoot.domain.MemberDTO" 
+	resultMap="baseMember" />
+</resultMap>
+
+<resultMap type="testSpringBoot.domain.CommentDTO" id="commentMap">
+	<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+	<id column="cuser_id" jdbcType="VARCHAR" property="cuserId"/>
+	<result column="CREG_DATE" jdbcType="TIMESTAMP" property="regDate"/>
+	<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject"/>
+	<result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>
+</resultMap>
+<insert id="insertComment" parameterType="testSpringBoot.domain.CommentDTO" >
+	insert into comment1(<include refid="baseColumn" />)
+	values(num_seq.nextval,#{cuserId},#{commentSubject},
+	#{commentContent},sysdate)
+</insert>
+<insert id="insertReply" parameterType="testSpringBoot.domain.ReplyDTO">
+	insert into reply(reply_no,ruser_id, comment_no, cuser_id,
+	reply_content, reg_Date )
+	values(num_seq.nextval, #{ruserId}, #{commentNo}, #{cuserId}, 
+	#{replyContent}, sysdate)
+</insert>
+<select id="commentAssociation" resultMap="associationResultMap" parameterType="long">
+	select <include refid="baseCommentColumn" />, 
+		   <include refid="baseMemberColumn" />
+	from member m, comment1 c
+	<where>
+		c.cuser_id = m.user_id
+		<if test="value != null">
+			and comment_no = #{commentNo}
+		</if>
+	</where>
+</select>
+<select id="getCommentList" resultMap="commentMap">
+	select rn, <include refid="baseColumn" />
+		from (select rownum rn, <include refid="baseColumn" />
+			 from ( select 
+						<include refid="baseColumn" />
+					from comment1
+					<where>
+						<if test="userId != null ">
+							user_id = #{userId}
+						</if>
+					</where>
+					order by REG_DATE desc))
+	where rn &gt;= #{startPage} and rn &lt;= #{endPage} 
+</select>
+<select id="getCommentCount" resultType="int">
+	select count(*) from comment1
+</select>
+
+
+
+<resultMap type="testSpringBoot.domain.CommentRepliesDTO" id="collectionResultMap">
+	<association property="commentDTO" javaType="testSpringBoot.domain.CommentDTO" resultMap="commentMap" />
+	<collection property="replies" ofType="testSpringBoot.domain.ReplyDTO" resultMap="replyBaseMap" />
+</resultMap>
+
+<select id="commentRepliesCollection" resultMap="collectionResultMap" 
+			parameterType="long">
+	select 
+		c.COMMENT_NO,c.CUSER_ID,COMMENT_SUBJECT,COMMENT_CONTENT,c.REG_DATE CREG_DATE,
+	    reply_no, ruser_id, reply_content, r.reg_Date RREG_DATE
+	from comment1 c left outer join reply r
+	on	c.comment_no = r.comment_no
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			and c.comment_no = #{commentNo}
+		</if>
+	</trim>
+</select>
+
+
+</mapper>

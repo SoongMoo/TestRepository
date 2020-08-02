@@ -27,6 +27,9 @@ $(function(){
 function modifyboard(){
 		modifyform.submit();
 	}
+function fileDel(this){
+	
+}
 	</script>
 </head>
 <body>
@@ -60,7 +63,7 @@ function modifyboard(){
 				원본 파일명 : <span th:text="${file.originalfileName}" id="oldOriginalfileName"></span><br />
 				저장된 파일 명 : <span th:text="${file.storeFileName }" id="oldStoreFileName"></span><br />
 				파일 사이즈 : <span th:text="${file.fileSize }" id="oldFileSize"></span>
-				<input type="button" id="btn" value="삭제"/>
+						   <input type="button" id="btn" value="삭제" onclick ="fileDel(this);"/>
 				</div>
 			</td>	
 	</tr>

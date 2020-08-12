@@ -34,11 +34,6 @@ public class MemberListService {
 				memberRepository.getMemberList(startEndPageDTO);
 		System.out.println(members.size());
 		int count = memberRepository.getMemberCount();
-		int maxPage = (int)((double)count / limit + 0.95);
-		int startPage = 
-			(int)(((double)page / limitPage + 0.9 ) -1) * limitPage +1;
-		int endPage = startPage + limitPage -1;
-		if(endPage > maxPage)endPage= maxPage;
 		
 		model.addAttribute("count", count);
 		model.addAttribute("memberList", members);

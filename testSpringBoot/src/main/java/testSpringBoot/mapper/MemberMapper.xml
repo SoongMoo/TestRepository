@@ -72,24 +72,18 @@
 		</trim>
 		<where>
 			user_Id = #{userId}
-			<if test="userPw != null">
-				and user_pw = #{userPw}
-			</if>		
 		</where>
 	</update>
 	<delete id="memberDelete" parameterType="testSpringBoot.domain.MemberDTO" >
 		delete from member
 		<where> 
 			user_Id = #{userId} 
-			<if test="userPw != null">
-				and user_pw = #{userPw}
-			</if>
 		</where>
 	</delete>
 	
 	<update id="userPwChange" parameterType="testSpringBoot.domain.UserPwChangeDTO">
 		update member
 		set user_pw = #{newUserPw}
-		where user_Id = #{userId} and user_pw = #{userPw}
+		where user_Id = #{userId}
 	</update>
 </mapper>

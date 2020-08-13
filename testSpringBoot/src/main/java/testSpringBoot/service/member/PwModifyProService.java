@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +23,8 @@ import testSpringBoot.mapper.MemberMapper;
 public class PwModifyProService {
 	@Autowired
 	LoginMapper loginRepository;
-	/*
-	 * @Autowired BCryptPasswordEncoder bcryptPasswordEncoder;
-	 */
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	MemberMapper memberRepository;
 	public String execute(Model model, ChangePwdCommand changePwdCommand,HttpSession session)  throws Exception{
@@ -33,16 +33,12 @@ public class PwModifyProService {
 		MemberDTO member = new MemberDTO();
 		member.setUserId(userId);
 		member = loginRepository.getSelectUser(member);
-		if(/*bcryptPasswordEncoder.matches*/
-				changePwdCommand.getUserPw().equals(member.getUserPw())) {
+		if(passwordEncoder.matches(changePwdCommand.getUserPw(),member.getUserPw())) {
 			UserPwChangeDTO dto = new UserPwChangeDTO(
 					member.getUserId(),
-					member.getUserPw(),/*
-					bcryptPasswordEncoder.encode(*/
-							changePwdCommand.getNewPw());
-			
-			
-			System.out.println("여기입니까????");
+					member.getUserPw(),
+					passwordEncoder.encode(
+							changePwdCommand.getNewPw()));
 			memberRepository.userPwChange(dto);	
 			return "redirect:/member/memberDetail";
 		}else {

@@ -1,11 +1,11 @@
 package testSpringBoot.service.login;
 
-import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,8 @@ import testSpringBoot.mapper.LoginMapper;
 public class AuthService {
 	@Autowired
 	LoginMapper loginmapper; 
-	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	private AuthInfo authInfo;
 	public MemberDTO authenticate(LoginCommand loginCommand,	HttpSession session,Model model, HttpServletResponse response) 
 			throws Exception{
@@ -32,7 +33,7 @@ public class AuthService {
 		if(member == null) {
 			model.addAttribute("valid_user","아이디가 존재하지 않습니다.");
 		}else {
-			if(loginCommand.getPw().equals( member.getUserPw())) {
+			if(passwordEncoder.matches(loginCommand.getPw(), member.getUserPw())) {
 				authInfo = new AuthInfo(member.getUserId(), 
 						member.getUserEmail(), member.getUserName(),
 						member.getUserPw());

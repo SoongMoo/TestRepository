@@ -13,10 +13,10 @@
 			<arg column="USER_NAME" javaType="string" />
 			<arg column="USER_BIRTH" javaType="java.sql.Timestamp"/>
 			<arg column="USER_GENDER" javaType="string" />
-			<arg column="USER_EMAIL" javaType="string" />
 			<arg column="USER_ADDR" javaType="string" />
 			<arg column="USER_PH1" javaType="string" />
 			<arg column="USER_PH2" javaType="string" />
+			<arg column="USER_EMAIL" javaType="string" />
 			<arg column="USER_REGIST" javaType="java.sql.Timestamp"/>
 			<arg column="JOIN_OK" javaType="string"/>
 			<arg column="INTEREST" javaType="string"/>
@@ -28,9 +28,6 @@
 			<include refid="basecolumn" />
 		from member
 		<trim prefix="where" prefixOverrides="AND | OR " >
-			<if test="userPw != null">
-			user_pw = #{userPw}
-			</if>
 			<if test="userId != null">
 			and user_id = #{userId} and join_ok is not null
 			</if>

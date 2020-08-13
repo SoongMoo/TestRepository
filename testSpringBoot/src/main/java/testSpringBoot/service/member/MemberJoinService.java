@@ -2,15 +2,13 @@ package testSpringBoot.service.member;
 
 import java.sql.Timestamp;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import lombok.extern.log4j.Log4j;
 import testSpringBoot.command.MemberCommand;
 import testSpringBoot.controller.MailAction;
 import testSpringBoot.controller.SmsSend;
@@ -20,7 +18,8 @@ import testSpringBoot.mapper.MemberMapper;
 @Service
 @Transactional
 public class MemberJoinService {
-	//BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	MemberMapper memberRepository;
 	@Autowired
@@ -49,11 +48,8 @@ public class MemberJoinService {
 		memberDTO.setUserName(memberCommand.getUserName());
 		memberDTO.setUserPh1(memberCommand.getUserPh1());
 		memberDTO.setUserPh2(memberCommand.getUserPh2());
-		memberDTO.setUserPw(memberCommand.getUserPw());
-		/*
-		 * memberDTO.setUserPw(
-		 * bcryptPasswordEncoder.encode(memberCommand.getUserPw()));
-		 */
+		memberDTO.setUserPw(
+				passwordEncoder.encode(memberCommand.getUserPw()));
 		System.out.println(memberDTO.getUserPw());
 		result = memberRepository.insertMember(memberDTO);
 		if(result != null) {

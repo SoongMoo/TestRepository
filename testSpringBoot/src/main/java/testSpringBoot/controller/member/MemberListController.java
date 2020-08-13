@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +26,8 @@ import testSpringBoot.service.member.PwModifyService;
 @Controller
 @RequestMapping("member")
 public class MemberListController {
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	MemberListService memberListService;
 	@Autowired
@@ -66,7 +69,7 @@ public class MemberListController {
 			 throws Exception{
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		MemberDTO member = memberDetailService.memberDetail(authInfo.getId(), model);
-		if(member.getUserPw().equals(memberCommand.getUserPw())) {
+		if(passwordEncoder.matches(memberCommand.getUserPw(), member.getUserPw())) {
 			return "thymeleaf/member/memberInfoPro";
 		}else {
 			model.addAttribute("valid_Pw" ,"비밀번호가 틀렸습니다.");

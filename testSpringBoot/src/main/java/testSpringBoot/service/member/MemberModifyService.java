@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,11 +29,8 @@ public class MemberModifyService {
 	MemberMapper memberRepository; 
 	@Autowired
 	LoginMapper loginRepository;
-
-	/*
-	 * @Autowired 
-	 * BCryptPasswordEncoder bcryptPasswordEncoder;
-	 */
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	public Integer memberModify(MemberCommand memberCommand,Model model)  throws Exception{
 		MemberDTO dto = new MemberDTO();
 		dto.setUserAddr(memberCommand.getUserAddr());
@@ -46,8 +44,7 @@ public class MemberModifyService {
 		System.out.println("memberModify   : " + dto.getUserId());
 		member = loginRepository.getSelectUser(dto);
 		model.addAttribute("memberCommand" , member);
-		if(/*bcryptPasswordEncoder.matches(*/
-				memberCommand.getUserPw().equals(member.getUserPw())) {
+		if(passwordEncoder.matches(memberCommand.getUserPw(), member.getUserPw())) {
 			dto.setUserPw(member.getUserPw());
 			System.out.println(memberCommand.getUserPh1());///////
 			return memberRepository.memberUpdate(dto);

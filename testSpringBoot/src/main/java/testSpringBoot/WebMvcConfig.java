@@ -16,6 +16,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
         		.addPathPatterns("/**/*")
         		// 인터셉터를 제외할 url 패턴을 등록하는 메서드로써 해당 url로 접근 시에는 인터셉터를 적용하지 않게 됩니다.
         		.excludePathPatterns("/register/**/")
-                .excludePathPatterns("/login"); //로그인 쪽은 예외처리를 한다.
+                .excludePathPatterns("/login")
+                .excludePathPatterns("/chatting"); //로그인 쪽은 예외처리를 한다.
 	}
 }

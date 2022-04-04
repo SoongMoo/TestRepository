@@ -8,6 +8,8 @@
 		<setting value="true" name="useGeneratedKeys"/>
 		<setting value="true" name="mapUnderscoreToCamelCase"/>
 		<setting value="PARTIAL" name="autoMappingBehavior"/>
+		
+		# 컬럼명을 필드명으로 자동 매핑
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 		<setting name="callSettersOnNulls" value="true"/>
 		<setting name="jdbcTypeForNull" value="NULL"/>

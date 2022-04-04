@@ -8,6 +8,9 @@
 		<setting value="true" name="useGeneratedKeys"/>
 		<setting value="true" name="mapUnderscoreToCamelCase"/>
 		<setting value="PARTIAL" name="autoMappingBehavior"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases >
 		<typeAlias type="Model.DTO.BoardDTO" alias = "bdto" />
